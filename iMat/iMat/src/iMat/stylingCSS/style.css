@@ -1,0 +1,7 @@
+
+.text-normal{
+    -fx-font-size: 13px;
+    -fx-font-family: "Avenir Book";
+}.be_blue{
+    -fx-background-color: rgb(24, 74, 139) ;
+ }
