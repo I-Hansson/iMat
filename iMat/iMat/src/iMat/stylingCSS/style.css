@@ -18,3 +18,10 @@
  .kategoriItem:hover{
      -fx-background-color: rgb(102, 178, 255);
  }
+
+ .amountText{
+     -fx-font-size: 15;
+     -fx-font-family: "Segoe UI";
+     -fx-text-fill: black;
+
+ }
