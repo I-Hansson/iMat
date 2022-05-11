@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="productImageView" fitHeight="119.0" fitWidth="151.0" layoutX="19.0" layoutY="32.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,24 +19,20 @@
             <Font name="Perpetua Bold" size="32.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="25.0" layoutY="176.0" prefHeight="27.0" prefWidth="139.0" text="25 kr/st">
-         <font>
-            <Font name="Perpetua" size="18.0" />
-         </font>
-      </Label>
       <Label layoutX="11.0" layoutY="14.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
-      <ImageView fitHeight="23.0" fitWidth="22.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="favoriteImage" fitHeight="23.0" fitWidth="22.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../.dat215/imat/images/product_154.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="-11.0" layoutY="203.0" prefHeight="33.0" prefWidth="190.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button layoutX="33.0" layoutY="2.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="24.0" />
-            <Button layoutX="133.0" layoutY="2.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="24.0" />
-            <Label layoutX="73.0" layoutY="5.0" prefHeight="17.0" prefWidth="24.0" text="155" />
-            <Label layoutX="101.0" layoutY="5.0" text="stk" />
+            <ImageView fx:id="minusImage" fitHeight="23.0" fitWidth="32.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="plusImage" fitHeight="23.0" fitWidth="22.0" layoutX="154.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="amountField" layoutX="77.0" layoutY="2.0" prefHeight="25.0" prefWidth="32.0" />
          </children>
       </AnchorPane>
+      <Label fx:id="priceLable" layoutX="51.0" layoutY="184.0" text="20" />
+      <Label fx:id="unitLable" layoutX="95.0" layoutY="184.0" text="kr/kg" />
    </children>
 </AnchorPane>
