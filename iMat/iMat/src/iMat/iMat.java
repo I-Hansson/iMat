@@ -14,14 +14,9 @@ public class iMat extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        ResourceBundle bundle = java.util.ResourceBundle.getBundle("iMat/resources/RecipeSearch");
-
-        Parent root = FXMLLoader.load(getClass().getResource("iMat/Main/First_main_page.fxml"), bundle);
-
+        Parent root = FXMLLoader.load(getClass().getResource("iMat/Main/First_main_page.fxml"));
         Scene scene = new Scene(root, 1222,880);
-
-        primaryStage.setTitle(bundle.getString("application.name"));
+        primaryStage.setTitle("iMat");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
