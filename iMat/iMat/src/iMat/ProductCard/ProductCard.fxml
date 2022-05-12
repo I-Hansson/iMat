@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" style="-fx-background-radius: 16; -fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" style="-fx-background-radius: 16; -fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="productImageView" fitHeight="119.0" fitWidth="151.0" layoutX="19.0" layoutY="32.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,7 +23,7 @@
             <Font name="Perpetua Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" alignment="CENTER" layoutX="29.0" layoutY="173.0" prefHeight="27.0" prefWidth="139.0" text="25 kr/st">
+      <Label fx:id="priceLabel" alignment="CENTER" layoutX="29.0" layoutY="173.0" prefHeight="27.0" prefWidth="139.0" text="25">
          <font>
             <Font name="Perpetua" size="18.0" />
          </font>
@@ -89,5 +88,6 @@
             <Label layoutX="5.0" layoutY="5.0" text="Eko" textFill="WHITE" />
          </children>
       </AnchorPane>
+      <Label fx:id="unitLabel" layoutX="138.0" layoutY="178.0" text="Label" />
    </children>
 </AnchorPane>
