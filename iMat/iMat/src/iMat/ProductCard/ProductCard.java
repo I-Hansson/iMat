@@ -38,7 +38,9 @@ private Button decButton;
 private AnchorPane buyButton;
 @FXML
 private AnchorPane ecoAnchorPane;
-@FXML AnchorPane mainPane;
+
+@FXML private AnchorPane mainPane;
+
 @FXML ImageView favoriteItem;
 
 private iMatController iMatController;
@@ -58,16 +60,16 @@ private iMatController iMatController;
         product = shop.getProduct();
         shoppingItem = shop;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCard.fxml"));
-        fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+        fxmlLoader.setRoot(this);
 
-        DropShadow dropShadow = new DropShadow();
+        /*DropShadow dropShadow = new DropShadow();
 
         dropShadow.setColor(Color.BLACK);
         dropShadow.setOffsetX(3);
         dropShadow.setOffsetY(3);
         mainPane.setEffect(dropShadow);
-
+*/
         productNameLabel.setText(product.getName());
         priceLabel.setText(String.format("%.2f",product.getPrice()));
         unitLabel.setText(product.getUnit());

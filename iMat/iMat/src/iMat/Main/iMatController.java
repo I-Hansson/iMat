@@ -27,7 +27,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
     //HEADER
     @FXML TextField searchBar;
     @FXML Button searchButton;
-    @FXML Label cartPriceIndicator;
+    @FXML TextField cartPriceIndicator;
     @FXML Button toCartButton;
     // Under Header
 

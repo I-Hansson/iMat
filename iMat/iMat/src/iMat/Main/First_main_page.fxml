@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" stylesheets="@stylingCSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" stylesheets="@../stylingCSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.iMatController">
    <children>
       <AnchorPane layoutX="7.0" prefHeight="148.0" prefWidth="1222.0" styleClass="be_blue" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="1022.0" layoutY="23.0" prefHeight="84.0" prefWidth="200.0" style="-fx-background-color: white; -fx-opacity: 0.4;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0" />
             <ImageView fitHeight="112.0" fitWidth="123.0" layoutX="20.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@resources/logo.png" />
+                  <Image url="@../resources/logo.png" />
                </image>
             </ImageView>
             <TextField fx:id="searchBar" layoutX="445.0" layoutY="42.0" prefHeight="46.0" prefWidth="239.0" promptText="Sök varor här" AnchorPane.topAnchor="42.0">
@@ -35,7 +35,7 @@
                <graphic>
                   <ImageView fitHeight="52.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/shopping_cart.png" />
+                        <Image url="@../resources/shopping_cart.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -93,7 +93,7 @@
                   <String fx:value="radius" />
                </styleClass>
                <children>
-                  <ScrollPane fx:id="titleLabel" prefHeight="558.0" prefWidth="817.0" style="-fx-opacity: 0;" />
+                  <ScrollPane fx:id="mainScrollPane" prefHeight="558.0" prefWidth="817.0" style="-fx-opacity: 0;" />
                </children>
             </AnchorPane>
             <Label alignment="TOP_CENTER" layoutX="63.0" layoutY="36.0" prefHeight="46.0" prefWidth="188.0" text="Kategorier">
