@@ -7,7 +7,7 @@
  }
 
 .be_lightblue{
-    -fx-background-color: rgb(26, 78, 138);
+    -fx-fill: rgb(26, 78, 138);
 }
  .radius{
      -fx-background-radius: 10px;
