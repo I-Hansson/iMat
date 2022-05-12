@@ -4,13 +4,24 @@
     -fx-font-family: "Avenir Book";
 }.be_blue{
     -fx-background-color: rgb(24, 74, 139) ;
+    -fx-fill: rgb(24, 74, 139);
+ }
+
+ .be_mediumblue{
+     -fx-background-color: rgb(24, 74, 1);
+     -fx-fill: rgb(24, 74, 139);
+     -fx-opacity: 80%;
  }
 
 .be_lightblue{
-    -fx-fill: rgb(26, 78, 138);
+    -fx-fill: rgb(24, 74, 139);
+    -fx-opacity: 20%;
 }
  .radius{
-     -fx-background-radius: 10px;
+     -fx-background-radius: 50;
+     -fx-border-radius: 50;
+     -fx-arc-height: 50;
+     -fx-arc-width: 50;
  }
  .kategoriItem{
      -fx-font-size: 22px;
