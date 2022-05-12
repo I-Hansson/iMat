@@ -6,6 +6,7 @@
     -fx-font-family: 'Lato';
     -fx-font-size: 15px;
     -fx-font-weight: bold;
+
 }
 
 .plusbutton {
@@ -22,7 +23,13 @@
 }
 
 .alternativeNumberbar{
-    -fx-background-color: white;
-    -fx-border-color: black;
+    -fx-background-color: rgb(223,223,229);
     -fx-border-radius: 50;
+}
+
+.ecoLabel{
+    -fx-text-fill: green;
+    -fx-font-weight: italic;
+    -fx-font-size: 32px;
+
 }
