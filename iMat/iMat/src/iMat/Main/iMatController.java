@@ -44,5 +44,6 @@ public class iMatController implements Initializable, ICard, ICheckout {
                     ProductCard productCard = new ProductCard(new ShoppingItem(item));
                     productCard.Hello();
             }
+        System.out.println("hej");
     }
 }
