@@ -1,5 +1,5 @@
 .button1 {
-    -fx-background-color: rgba(24, 74, 139);
+    -fx-background-color: rgb(24, 74, 139);
     -fx-background-radius: 50;
     -fx-text-fill: white;
     -fx-padding: 2 27 2 27;
@@ -10,14 +10,14 @@
 }
 
 .plusbutton {
-    -fx-background-color: rgba(24, 74, 139);
+    -fx-background-color: rgb(24, 74, 139);
     -fx-background-radius: 50;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 .numberbar{
-    -fx-background-color: rgba(97,97,223);
+    -fx-background-color: rgb(97,97,223);
     -fx-background-radius: 50
 ;
 }

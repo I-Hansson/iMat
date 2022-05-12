@@ -17,7 +17,7 @@
       <AnchorPane layoutX="7.0" prefHeight="148.0" prefWidth="1222.0" styleClass="be_blue" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="1022.0" layoutY="23.0" prefHeight="84.0" prefWidth="200.0" style="-fx-background-color: white; -fx-opacity: 0.4;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0" />
-            <ImageView fitHeight="112.0" fitWidth="123.0" layoutX="20.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoHeader" fitHeight="112.0" fitWidth="123.0" layoutX="20.0" layoutY="9.0" onMouseClicked="#logoClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/logo.png" />
                </image>
@@ -57,7 +57,7 @@
       <AnchorPane layoutY="147.0" prefHeight="65.0" prefWidth="1222.0" style="-fx-opacity: 0.9;">
          <children>
             <Button layoutX="441.0" layoutY="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="180.0" style="-fx-background-color: white;" text="Ordrar" AnchorPane.leftAnchor="430.0" />
-            <Button layoutX="239.0" layoutY="10.0" maxHeight="46.0" minHeight="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="180.0" style="-fx-background-color: white; -fx-opacity: 1;" styleClass="boxShadow" text="Handla" AnchorPane.leftAnchor="190.0">
+            <Button fx:id="handlaMenuButton" layoutX="239.0" layoutY="10.0" maxHeight="46.0" minHeight="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="180.0" style="-fx-background-color: white; -fx-opacity: 1;" styleClass="boxShadow" text="Handla" AnchorPane.leftAnchor="190.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -92,7 +92,7 @@
                <children>
                   <ScrollPane fx:id="mainScrollPane" prefHeight="558.0" prefWidth="817.0">
                      <content>
-                        <FlowPane fx:id="browsePane" prefHeight="31.0" prefWidth="816.0" />
+                        <FlowPane fx:id="browsePane" prefHeight="31.0" prefWidth="816.0" styleClass="be_blue" />
                      </content></ScrollPane>
                </children>
             </AnchorPane>

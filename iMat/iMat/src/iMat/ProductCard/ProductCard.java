@@ -30,23 +30,26 @@ public class ProductCard extends AnchorPane {
 @FXML Text productAmount;
 
 @FXML Label unitLabel;
-@FXML Button incButton;
-@FXML  Button decButton;
+@FXML ImageView addButton;
+@FXML  ImageView decButton;
 @FXML  AnchorPane buyButton;
 @FXML  AnchorPane ecoAnchorPane;
 @FXML AnchorPane mainPane;
 @FXML ImageView infoImageView;
 @FXML ImageView favoriteItem;
-
+@FXML AnchorPane NotBuy;
+@FXML AnchorPane buyed;
 
 
     IMatDataHandler handler = IMatDataHandler.getInstance();
     private ShoppingItem shoppingItem;
-    private Product product;
+    Product product;
     private int amount = 0;
 
-    private static final javafx.scene.image.Image addImage = new javafx.scene.image.Image("resources/add.png");
-    private static final javafx.scene.image.Image minusImageRes = new javafx.scene.image.Image("resources/remove.png");
+
+
+    private static final javafx.scene.image.Image addImage = new javafx.scene.image.Image("resources/addButton.png");
+    private static final javafx.scene.image.Image minusImageRes = new javafx.scene.image.Image("resources/decButton.png");
     private static final javafx.scene.image.Image favoriteFullImage = new javafx.scene.image.Image("resources/favorite.png");
     private static final javafx.scene.image.Image favoriteEmptyImage = new Image("resources/favorite_empty.png");
     private static final javafx.scene.image.Image infoImage= new Image("resources/informationLogo.png");
@@ -64,7 +67,8 @@ public class ProductCard extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
+        addButton.setImage(addImage);
+        decButton.setImage(minusImageRes);
         productNameText.setText(product.getName());
         priceLabel.setText(String.format("%.2f",product.getPrice()));
         unitLabel.setText(product.getUnit());
@@ -77,13 +81,40 @@ public class ProductCard extends AnchorPane {
             favoriteItem.setImage(favoriteEmptyImage);
 
         }
+
+        update();
     }
     public void Hello() {
         System.out.println(product.getName());
     }
     public void update() {
-        System.out.println(product.getName());
+        productAmount.setText(String.valueOf(amount));
+
     }
+    @FXML
+    public void notBuyClicked(){
+        buyed.toFront();
+        amount =1;
+        update();
+    }
+    @FXML
+    public void onClickDecButton(){
+        amount -= 1;
+        if(amount == 0){
+            NotBuy.toFront();
+        }
+        update();
+    }
+    @FXML
+    public void addButtonClicked(){
+        amount +=1;
+        update();
+    }
+    public Product getProduct() {
+        return product;
+    }
+
+
 
 
 }
