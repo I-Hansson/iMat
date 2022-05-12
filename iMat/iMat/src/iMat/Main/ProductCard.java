@@ -1,28 +1,25 @@
-package ProductCard;
+package Main;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import Main.iMatController;
-import javafx.scene.paint.Color;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
-import java.awt.*;
 
 public class ProductCard extends AnchorPane {
 
 @FXML
 private ImageView productImageView;
-@FXML
-private Label productNameLabel;
+
+@FXML private Label productNameLabel;
+
 @FXML
 private Label priceLabel;
 @FXML
@@ -38,8 +35,10 @@ private Button decButton;
 private AnchorPane buyButton;
 @FXML
 private AnchorPane ecoAnchorPane;
-@FXML AnchorPane mainPane;
-@FXML ImageView favoriteItem;
+
+@FXML private AnchorPane mainPane;
+
+@FXML private ImageView favoriteItem;
 
 private iMatController iMatController;
 
@@ -60,8 +59,9 @@ private iMatController iMatController;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+        productNameLabel.setText("product");
 
-        DropShadow dropShadow = new DropShadow();
+        /*DropShadow dropShadow = new DropShadow();
 
         dropShadow.setColor(Color.BLACK);
         dropShadow.setOffsetX(3);
@@ -80,7 +80,7 @@ private iMatController iMatController;
             favoriteItem.setImage(favoriteEmptyImage);
         }
 
-
+*/
     }
     public void Hello() {
         System.out.println(product.getName());

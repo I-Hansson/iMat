@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" style="-fx-background-radius: 16; -fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" style="-fx-background-radius: 16; -fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.ProductCard">
    <children>
       <ImageView fx:id="productImageView" fitHeight="119.0" fitWidth="151.0" layoutX="19.0" layoutY="32.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -52,7 +52,7 @@
                <children>
                   <HBox alignment="CENTER" layoutX="9.0" prefHeight="33.0" prefWidth="145.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField fx:id="productAmount" alignment="CENTER_RIGHT" maxWidth="-Infinity" onKeyTyped="#informationChanged" onMouseClicked="#clearText" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: transparent;" styleClass="amountText" stylesheets="@../stylingCSS/style.css" text="123" HBox.hgrow="ALWAYS">
+                        <TextField alignment="CENTER_RIGHT" maxWidth="-Infinity" onKeyTyped="#informationChanged" onMouseClicked="#clearText" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: transparent;" styleClass="amountText" stylesheets="@../stylingCSS/style.css" text="123" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Lato Regular" size="13.0" />
                            </font>
@@ -90,4 +90,4 @@
       </AnchorPane>
       <Label fx:id="unitLabel" layoutX="138.0" layoutY="178.0" text="Label" />
    </children>
-</AnchorPane>
+</fx:root>

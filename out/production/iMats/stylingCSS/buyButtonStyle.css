@@ -1,0 +1,35 @@
+.button1 {
+    -fx-background-color: rgba(24, 74, 139);
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-padding: 2 27 2 27;
+    -fx-font-family: 'Lato';
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+
+}
+
+.plusbutton {
+    -fx-background-color: rgba(24, 74, 139);
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.numberbar{
+    -fx-background-color: rgba(97,97,223);
+    -fx-background-radius: 50
+;
+}
+
+.alternativeNumberbar{
+    -fx-background-color: rgb(223,223,229);
+    -fx-border-radius: 50;
+}
+
+.ecoLabel{
+    -fx-text-fill: green;
+    -fx-font-weight: italic;
+    -fx-font-size: 32px;
+
+}
