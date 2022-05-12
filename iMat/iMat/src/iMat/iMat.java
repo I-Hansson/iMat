@@ -8,12 +8,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class iMat extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("first_main_page.fxml"));
-        primaryStage.setScene(new Scene(root, 1222, 880));
+
+        ResourceBundle bundle = java.util.ResourceBundle.getBundle("iMat/resources/RecipeSearch");
+
+        Parent root = FXMLLoader.load(getClass().getResource("First_main_page.fxml"), bundle);
+
+        Scene scene = new Scene(root, 1222,880);
+
+        primaryStage.setTitle(bundle.getString("application.name"));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
