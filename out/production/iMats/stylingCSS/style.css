@@ -66,8 +66,8 @@
 
  .text-large{
      -fx-font-size: 22;
-     -fx-font-weight: bold;
  }
  .text-smaller{
-     -fx-font-size: 14;
+     -fx-font-size: 15;
+     -fx-font-weight: bold;
  }

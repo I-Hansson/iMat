@@ -10,28 +10,28 @@
 
 <fx:root fx:id="mainPane" prefHeight="240.0" prefWidth="190.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="productImageView" fitHeight="118.0" fitWidth="136.0" layoutX="27.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="infoImageView" fitHeight="24.0" fitWidth="24.0" layoutX="166.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+      <ImageView fx:id="productImageView" fitHeight="118.0" fitWidth="146.0" layoutX="27.0" layoutY="11.5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="infoImageView" fitHeight="24.0" fitWidth="24.0" layoutX="7.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
       <ImageView fx:id="favoriteItem" fitHeight="24.0" fitWidth="24.0" layoutX="4.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0" />
-      <Text fx:id="productNameText" layoutX="9.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" textAlignment="CENTER" wrappingWidth="171.341094970703">
+      <Text fx:id="productNameText" layoutX="11.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ett väldigt långt produktnamn" textAlignment="CENTER" wrappingWidth="171.341094970703">
          <styleClass>
             <String fx:value="amountText" />
             <String fx:value="standardTextProductCard" />
             <String fx:value="text-large" />
          </styleClass></Text>
-      <Label fx:id="priceLabel" layoutX="53.0" layoutY="177.0" prefHeight="17.0" prefWidth="48.0" text="999,99">
+      <Label fx:id="priceLabel" layoutX="53.0" layoutY="175.0" prefHeight="17.0" prefWidth="48.0" text="999,99">
          <styleClass>
             <String fx:value="text-smaller" />
             <String fx:value="standardTextProductCard" />
          </styleClass></Label>
-      <Label fx:id="unitLabel" layoutX="102.0" layoutY="177.0" prefHeight="17.0" prefWidth="64.0" text="kr/kg">
+      <Label fx:id="unitLabel" layoutX="102.0" layoutY="175.0" prefHeight="17.0" prefWidth="64.0" text="kr/kg">
          <styleClass>
             <String fx:value="text-smaller" />
             <String fx:value="standardTextProductCard" />
          </styleClass></Label>
-      <AnchorPane fx:id="ecoAnchorPane" layoutX="142.0" layoutY="91.0" prefHeight="34.0" prefWidth="34.0" styleClass="ecoCircle" stylesheets="@../stylingCSS/style.css">
+      <AnchorPane fx:id="ecoAnchorPane" layoutX="142.0" layoutY="91.0" prefHeight="35.0" prefWidth="35.0" styleClass="ecoCircle" stylesheets="@../stylingCSS/style.css">
          <children>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="7.0" prefHeight="17.0" prefWidth="27.0" stylesheets="@../stylingCSS/style.css" text="Eko">
+            <Label alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="17.0" prefWidth="27.0" stylesheets="@../stylingCSS/style.css" text="Eko">
                <styleClass>
                   <String fx:value="ecoText" />
                   <String fx:value="standardTextProductCard" />
