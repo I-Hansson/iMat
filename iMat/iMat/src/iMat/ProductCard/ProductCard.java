@@ -37,7 +37,7 @@ public class ProductCard extends AnchorPane {
 @FXML AnchorPane mainPane;
 @FXML ImageView infoImageView;
 @FXML ImageView favoriteItem;
-@FXML AnchorPane NotBuy;
+@FXML private AnchorPane NotBuy;
 @FXML AnchorPane buyed;
 
 
@@ -103,7 +103,7 @@ public class ProductCard extends AnchorPane {
     public void onClickDecButton(){
         amount -= 1;
         if(amount == 0){
-            NotBuy.toFront();
+            buyed.toBack();
         }
         update();
     }
