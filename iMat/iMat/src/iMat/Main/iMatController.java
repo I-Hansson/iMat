@@ -39,7 +39,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
     // Under Header
     @FXML Button handlaMenuButton;
     // Kategorier
-
+    @FXML Button meatFishButton;
 
     // flexScreen
     @FXML
@@ -65,6 +65,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
 
         handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpHandla());
         logoHeader.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpStartPage());
+        meatFishButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpFishMeat() );
 
 
         setUpStartPage();
@@ -93,6 +94,18 @@ public class iMatController implements Initializable, ICard, ICheckout {
     public void notifyCheckout(){
 
     }
+
+    public void setUpFishMeat(){
+    titleLabel.setText("Kött och Fisk");
+    browsePane.getChildren().clear();
+    for (ProductCard item: items){
+        if(item.getProduct().getCategory()== category.FISH)
+            browsePane.getChildren().add(item);
+        if(item.getProduct().getCategory()== category.MEAT)
+            browsePane.getChildren().add(item);
+        }
+    }
+
     @FXML
     public void logoClick(){
 
