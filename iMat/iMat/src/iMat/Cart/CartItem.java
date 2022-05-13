@@ -37,10 +37,19 @@ public class CartItem extends AnchorPane {
         }
         product = pCard.getProduct();
         this.pCard = pCard;
-        productNameText.setText("hej");
+        productNameText.setText(product.getName());
         amountText.setText(String.valueOf(pCard.shoppingItem.getAmount()));
         costText.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
 
 
     }
+    public void updateAmount(){
+        amountText.setText(String.valueOf(pCard.shoppingItem.getAmount()));
+        costText.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
+    }
+    public double getTotalPrice(){
+        return pCard.shoppingItem.getAmount()*product.getPrice();
+
+    }
+
 }

@@ -58,7 +58,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
     @FXML AnchorPane cartPane;
     @FXML FlowPane browseCartPane;
 
-
+    public double priceInCart = 0;
     private ListItemPool itemPool;
      ArrayList<ProductCard> items = new ArrayList<ProductCard>();
     Hashtable <String,CartItem> cartItems = new Hashtable<>();
@@ -123,19 +123,14 @@ public class iMatController implements Initializable, ICard, ICheckout {
                inCart.add(cartItems.get(i.getProduct().getName()));
            }
         }
+        HashSet<CartItem> hashSet = new HashSet<>(inCart);
+        inCart.clear();
+        for( CartItem h : hashSet){
+            inCart.add(h);
+        }
         showIncart();
     }
 
-    public void setUpFishMeat(){
-    titleLabel.setText("Kött och Fisk");
-    browsePane.getChildren().clear();
-    for (ProductCard item: items){
-        if(item.getProduct().getCategory()== category.FISH)
-            browsePane.getChildren().add(item);
-        if(item.getProduct().getCategory()== category.MEAT)
-            browsePane.getChildren().add(item);
-        }
-    }
 
 
     public void logoClick(){
@@ -144,14 +139,37 @@ public class iMatController implements Initializable, ICard, ICheckout {
 
     public void showIncart(){
         browseCartPane.getChildren().clear();
-        for (CartItem cItem: inCart){
-            System.out.println(cItem.pCard.getProduct().getName());
-            System.out.println("bajs");
-            if(!inCart.contains(cItem)){
-                browseCartPane.getChildren().add(cItem);
+        priceInCart = 0;
+        ArrayList<Double> inCartPrices = new ArrayList<>();
+        for (CartItem cItem: inCart) {
+            System.out.println(cItem.pCard.getProduct().getName() + " hej" + cItem.pCard.shoppingItem.getAmount());
+            cItem.updateAmount();
+            browseCartPane.getChildren().add(cItem);
+            if (cItem.pCard.shoppingItem.getAmount() < 1) {
+                removeItemInCart(cItem);
             }
+            inCartPrices.add(cItem.getTotalPrice());
+
         }
+            for(Double x : inCartPrices){
+                priceInCart += x;
+            }
+            updatePriceInd();
+
+
+
+        System.out.println("------");
     }
+    public void removeItemInCart(CartItem cartItem){
+
+
+            browseCartPane.getChildren().remove(cartItem);
+        }
+public void updatePriceInd(){
+        cartPriceIndicator.setText(String.valueOf(priceInCart + " Kr"));
+}
+
+
     @FXML
     public void openCloseCart(){
         if (!open){
@@ -164,6 +182,16 @@ public class iMatController implements Initializable, ICard, ICheckout {
 
 
 
+    }
+    public void setUpFishMeat(){
+        titleLabel.setText("Kött och Fisk");
+        browsePane.getChildren().clear();
+        for (ProductCard item: items){
+            if(item.getProduct().getCategory()== category.FISH)
+                browsePane.getChildren().add(item);
+            if(item.getProduct().getCategory()== category.MEAT)
+                browsePane.getChildren().add(item);
+        }
     }
 
 

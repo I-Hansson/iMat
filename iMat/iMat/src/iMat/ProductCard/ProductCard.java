@@ -114,7 +114,7 @@ public class ProductCard extends AnchorPane {
     @FXML
     public void addButtonClicked(){
         shoppingItem.setAmount(shoppingItem.getAmount()+ 1);;
-        updateAmount();
+        update();
     }
     public void updateAmount(){
         productAmount.setText(String.valueOf(shoppingItem.getAmount()));
