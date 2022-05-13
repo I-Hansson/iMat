@@ -42,13 +42,17 @@
          <children>
             <AnchorPane fx:id="buyed" prefHeight="35.0" prefWidth="155.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css">
                <children>
-                  <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="19.0" />
-                  <Text fx:id="productAmount" layoutX="52.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="47.99999999999977">
+                  <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="10.0" />
+                  <Text fx:id="productAmount" layoutX="52.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="47.99999999999977" AnchorPane.bottomAnchor="5.0">
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text-large" />
+                        <String fx:value="standardTextProductCard" />
+                     </styleClass>
                   </Text>
-                  <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="32.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="19.0" />
+                  <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="32.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="notBuy" maxHeight="35.0" minHeight="35.0" onMouseClicked="#notBuyClicked" prefHeight="35.0" prefWidth="155.0">
