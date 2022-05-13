@@ -1,5 +1,6 @@
 package Main;
 
+import Cart.CartItem;
 import CheckoutWizard.ICheckout;
 import Feature.Feature;
 import ProductCard.ICard;
@@ -11,7 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
@@ -33,9 +36,11 @@ public class iMatController implements Initializable, ICard, ICheckout {
     @FXML
     Button searchButton;
     @FXML
-    TextField cartPriceIndicator;
+    Text cartPriceIndicator;
     @FXML
     Button toCartButton;
+    @FXML
+    AnchorPane toCartPane;
     // Under Header
     @FXML Button handlaMenuButton;
     // Kategorier
@@ -49,13 +54,26 @@ public class iMatController implements Initializable, ICard, ICheckout {
     @FXML
     FlowPane browsePane;
 
+    // CART
+    @FXML AnchorPane cartPane;
+    @FXML FlowPane browseCartPane;
+
+
     private ListItemPool itemPool;
-    private ArrayList<ProductCard> items = new ArrayList<ProductCard>();
+     ArrayList<ProductCard> items = new ArrayList<ProductCard>();
+    Hashtable <String,CartItem> cartItems = new Hashtable<>();
+    ArrayList<CartItem> inCart = new ArrayList<CartItem>();
+    boolean open = false;
+
     @Override
     public void initialize(URL url, ResourceBundle resources) {
         for(Product item: handler.getProducts()) {
             ProductCard productCard = new ProductCard(new ShoppingItem(item));
             items.add(productCard);
+        }
+        for (ProductCard i : items){
+            CartItem cartItem = new CartItem(i);
+            cartItems.put(cartItem.product.getName(),cartItem);
         }
 
 
@@ -63,8 +81,13 @@ public class iMatController implements Initializable, ICard, ICheckout {
         browsePane.setVgap(10);
         browsePane.setHgap(15);
 
-        handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpHandla());
         logoHeader.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpStartPage());
+        handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpHandla());
+
+        for(ProductCard l: items ){
+            l.addobservers(this);
+        }
+
         meatFishButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpFishMeat() );
 
 
@@ -91,8 +114,16 @@ public class iMatController implements Initializable, ICard, ICheckout {
             }
         }
     }
-    public void notifyCheckout(){
 
+
+    public void notifyBuyChange(ProductCard e){
+        for (ProductCard i : items){
+           if(i.shoppingItem.getAmount() > 0){
+
+               inCart.add(cartItems.get(i.getProduct().getName()));
+           }
+        }
+        showIncart();
     }
 
     public void setUpFishMeat(){
@@ -106,8 +137,34 @@ public class iMatController implements Initializable, ICard, ICheckout {
         }
     }
 
-    @FXML
+
     public void logoClick(){
 
     }
+
+    public void showIncart(){
+        browseCartPane.getChildren().clear();
+        for (CartItem cItem: inCart){
+            System.out.println(cItem.pCard.getProduct().getName());
+            System.out.println("bajs");
+            if(!inCart.contains(cItem)){
+                browseCartPane.getChildren().add(cItem);
+            }
+        }
+    }
+    @FXML
+    public void openCloseCart(){
+        if (!open){
+            cartPane.toFront();
+            open = true;
+        }else{
+            cartPane.toBack();
+            open = false;
+        }
+
+
+
+    }
+
+
 }

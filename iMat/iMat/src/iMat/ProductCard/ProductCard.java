@@ -1,6 +1,7 @@
 package ProductCard;
 
 
+import Main.iMatController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -43,9 +44,10 @@ public class ProductCard extends AnchorPane {
 
 
     IMatDataHandler handler = IMatDataHandler.getInstance();
-    private ShoppingItem shoppingItem;
+    public ShoppingItem shoppingItem;
     Product product;
-    private int amount = 0;
+
+
 
 
 
@@ -59,10 +61,11 @@ public class ProductCard extends AnchorPane {
     public ProductCard(ShoppingItem shop){
         product = shop.getProduct();
         shoppingItem = shop;
+        shoppingItem.setAmount(0);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
+        System.out.println(shoppingItem.getAmount());
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
@@ -86,37 +89,50 @@ public class ProductCard extends AnchorPane {
 
         update();
     }
-    public void Hello() {
-        System.out.println(product.getName());
-    }
     public void update() {
-        productAmount.setText(String.valueOf(amount));
+        productAmount.setText(String.valueOf(shoppingItem.getAmount()));
+        System.out.println(product.getName() +" " +shoppingItem.getAmount());
+
+        notifyListeners();
 
     }
     @FXML
     public void notBuyClicked(){
         buyed.toFront();
-        amount =1;
+        shoppingItem.setAmount(1);
+
         update();
     }
     @FXML
     public void onClickDecButton(){
-        amount -= 1;
-        if(amount == 0){
+        shoppingItem.setAmount(shoppingItem.getAmount()- 1);
+        if(shoppingItem.getAmount() == 0){
             buyed.toBack();
         }
         update();
     }
     @FXML
     public void addButtonClicked(){
-        amount +=1;
-        update();
+        shoppingItem.setAmount(shoppingItem.getAmount()+ 1);;
+        updateAmount();
+    }
+    public void updateAmount(){
+        productAmount.setText(String.valueOf(shoppingItem.getAmount()));
+        System.out.println(product.getName() +" " +shoppingItem.getAmount());
     }
     public Product getProduct() {
         return product;
     }
 
-
+    public void addobservers(ICard e){
+        listeners.add(e);
+    }
+    public void notifyListeners(){
+        for( ICard e : listeners){
+            e.notifyBuyChange(this);
+            break;
+        }
+    }
 
 
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root fx:id="cartItemPanee" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: blue;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <styleClass>
+      <String fx:value="border" />
+      <String fx:value="radius" />
+   </styleClass>
+   <children>
+      <Label fx:id="productNameText" layoutX="14.0" layoutY="17.0" text="Label" />
+      <Label fx:id="amountText" layoutX="76.0" layoutY="17.0" text="Label" />
+      <Label fx:id="costText" layoutX="138.0" layoutY="17.0" text="Label" />
+   </children>
+</fx:root>

@@ -11,12 +11,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" stylesheets="@../stylingCSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.iMatController">
    <children>
+      <AnchorPane fx:id="cartPane" layoutX="1022.0" prefHeight="402.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="371.0">
+         <children>
+            <ScrollPane prefHeight="312.0" prefWidth="200.0">
+               <content>
+                  <FlowPane fx:id="browseCartPane" prefHeight="47.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <Button layoutX="14.0" layoutY="331.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="173.0" text="Button" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="880.0" prefWidth="1222.0" style="-fx-background-color: white;" />
       <AnchorPane layoutX="7.0" prefHeight="148.0" prefWidth="1222.0" styleClass="be_blue" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutX="1022.0" layoutY="23.0" prefHeight="84.0" prefWidth="200.0" style="-fx-background-color: white; -fx-opacity: 0.4;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0" />
+            <AnchorPane fx:id="toCartPane" layoutX="1022.0" layoutY="23.0" onMouseClicked="#openCloseCart" prefHeight="84.0" prefWidth="200.0" style="-fx-background-color: white; -fx-opacity: 0.4;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0" />
             <ImageView fx:id="logoHeader" fitHeight="112.0" fitWidth="123.0" layoutX="20.0" layoutY="9.0" onMouseClicked="#logoClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/logo.png" />
@@ -32,7 +44,13 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="toCartButton" layoutX="996.0" layoutY="53.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="60.0" style="-fx-background-color: white;" styleClass="boxShadow" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
+            <AnchorPane layoutX="1030.0" layoutY="40.0" onMouseClicked="#openCloseCart" prefHeight="50.0" prefWidth="102.0" style="-fx-background-radius: 5; -fx-background-color: white;" AnchorPane.rightAnchor="90.0" />
+            <Text fx:id="cartPriceIndicator" layoutX="933.0" layoutY="74.0" onMouseClicked="#openCloseCart" strokeType="OUTSIDE" strokeWidth="0.0" text="0 Kr" wrappingWidth="88.13671875" AnchorPane.rightAnchor="90.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="toCartButton" layoutX="996.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#openCloseCart" prefHeight="57.0" prefWidth="60.0" style="-fx-background-color: white;" styleClass="boxShadow" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
                <graphic>
                   <ImageView fitHeight="52.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,14 +62,6 @@
                   <Tooltip text="Visa varukorg" />
                </tooltip>
             </Button>
-            <TextField fx:id="cartPriceIndicator" editable="false" layoutX="843.0" layoutY="35.0" prefHeight="57.0" prefWidth="106.0" promptText="100 Kr" AnchorPane.rightAnchor="85.0">
-               <font>
-                  <Font name="System Bold Italic" size="24.0" />
-               </font>
-               <tooltip>
-                  <Tooltip text="Kostnad för din nuvarande varukorg" />
-               </tooltip>
-            </TextField>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="147.0" prefHeight="65.0" prefWidth="1222.0" style="-fx-opacity: 0.9;">
