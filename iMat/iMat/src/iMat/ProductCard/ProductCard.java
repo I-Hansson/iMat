@@ -41,6 +41,7 @@ public class ProductCard extends AnchorPane {
 @FXML AnchorPane buyed;
 
 
+
     IMatDataHandler handler = IMatDataHandler.getInstance();
     private ShoppingItem shoppingItem;
     Product product;
@@ -79,8 +80,9 @@ public class ProductCard extends AnchorPane {
         }
         else {
             favoriteItem.setImage(favoriteEmptyImage);
-
         }
+        if(!product.isEcological())
+            ecoAnchorPane.setVisible(false);
 
         update();
     }

@@ -50,3 +50,8 @@
  #opa0{
      -fx-opacity: 0;
  }
+
+ .ecoCircle{
+     -fx-background-radius: 40;
+     -fx-background-color: green;
+ }
