@@ -69,6 +69,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
 
         setUpStartPage();
     }
+
     public void setUpStartPage(){
         browsePane.getChildren().clear();
         browsePane.getChildren().add(new Feature());

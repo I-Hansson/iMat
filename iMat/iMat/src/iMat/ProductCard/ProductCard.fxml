@@ -21,13 +21,13 @@
          </children></AnchorPane>
       <AnchorPane fx:id="buyed" layoutX="19.0" layoutY="202.0" prefHeight="35.0" prefWidth="155.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="19.0">
          <children>
-            <ImageView fx:id="decButton" fitHeight="43.0" fitWidth="56.0" layoutX="-14.0" layoutY="-5.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="productAmount" layoutX="67.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="20.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <ImageView fx:id="addButton" fitHeight="43.0" fitWidth="49.0" layoutX="104.0" layoutY="-6.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="40.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="notBuy" layoutX="14.0" layoutY="201.0" maxHeight="35.0" minHeight="35.0" onMouseClicked="#notBuyClicked" prefHeight="35.0" prefWidth="155.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="19.0">
