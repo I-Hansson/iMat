@@ -53,5 +53,18 @@
 
  .ecoCircle{
      -fx-background-radius: 40;
-     -fx-background-color: green;
+     -fx-background-color: rgb(79, 121, 66);
+ }
+ .ecoText{
+     -fx-font-size: 14;
+     -fx-text-fill: white;
+ }
+
+ .standardTextProductCard{
+     -fx-font-family: Cambria;
+ }
+
+ .text-large{
+     -fx-font-size: 22;
+     -fx-font-weight: bold;
  }

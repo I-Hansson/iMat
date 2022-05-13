@@ -13,24 +13,34 @@
       <ImageView fx:id="productImageView" fitHeight="118.0" fitWidth="136.0" layoutX="27.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="infoImageView" fitHeight="24.0" fitWidth="24.0" layoutX="166.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
       <ImageView fx:id="favoriteItem" fitHeight="24.0" fitWidth="24.0" layoutX="4.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0" />
-      <Text fx:id="productNameText" layoutX="44.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" textAlignment="CENTER" wrappingWidth="105.34112548828114" />
-      <Label fx:id="priceLabel" layoutX="73.0" layoutY="166.0" prefHeight="17.0" prefWidth="19.0" text="20" />
-      <Label fx:id="unitLabel" layoutX="96.0" layoutY="167.0" prefHeight="17.0" prefWidth="39.0" text="kr/kg" />
+      <Text fx:id="productNameText" layoutX="21.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" textAlignment="CENTER" wrappingWidth="155.00778198242176">
+         <styleClass>
+            <String fx:value="amountText" />
+            <String fx:value="standardTextProductCard" />
+            <String fx:value="text-large" />
+         </styleClass></Text>
+      <Label fx:id="priceLabel" layoutX="69.0" layoutY="167.0" prefHeight="17.0" prefWidth="33.0" styleClass="standardTextProductCard" text="20,00" />
+      <Label fx:id="unitLabel" layoutX="101.0" layoutY="167.0" prefHeight="17.0" prefWidth="55.0" styleClass="standardTextProductCard" text="kr/kg" />
       <AnchorPane fx:id="ecoAnchorPane" layoutX="132.0" layoutY="113.0" prefHeight="34.0" prefWidth="34.0" styleClass="ecoCircle" stylesheets="@../stylingCSS/style.css">
          <children>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="7.0" prefHeight="17.0" prefWidth="27.0" stylesheets="@../stylingCSS/style.css" text="Eko" />
+            <Label alignment="CENTER" layoutX="3.0" layoutY="7.0" prefHeight="17.0" prefWidth="27.0" stylesheets="@../stylingCSS/style.css" text="Eko">
+               <styleClass>
+                  <String fx:value="ecoText" />
+                  <String fx:value="standardTextProductCard" />
+               </styleClass>
+            </Label>
          </children></AnchorPane>
       <StackPane layoutX="20.0" layoutY="188.0" prefHeight="35.0" prefWidth="155.0" AnchorPane.bottomAnchor="10.0">
          <children>
             <AnchorPane fx:id="buyed" prefHeight="35.0" prefWidth="155.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css">
                <children>
-                  <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="19.0" />
                   <Text fx:id="productAmount" layoutX="52.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="47.99999999999977">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="40.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="32.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="19.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="notBuy" maxHeight="35.0" minHeight="35.0" onMouseClicked="#notBuyClicked" prefHeight="35.0" prefWidth="155.0">
