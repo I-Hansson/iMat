@@ -31,9 +31,9 @@ public class ProductCard extends AnchorPane {
 @FXML Text productAmount;
 
 @FXML Label unitLabel;
-@FXML ImageView addButton;
-@FXML  ImageView decButton;
-@FXML  AnchorPane buyButton;
+@FXML public  ImageView addButton;
+@FXML public ImageView decButton;
+@FXML   AnchorPane buyButton;
 @FXML  AnchorPane ecoAnchorPane;
 @FXML AnchorPane mainPane;
 @FXML ImageView infoImageView;
@@ -51,8 +51,8 @@ public class ProductCard extends AnchorPane {
 
 
 
-    private static final javafx.scene.image.Image addImage = new javafx.scene.image.Image("resources/addButton.png");
-    private static final javafx.scene.image.Image minusImageRes = new javafx.scene.image.Image("resources/decButton.png");
+    public static final javafx.scene.image.Image addImage = new javafx.scene.image.Image("resources/addButton.png");
+    public static final javafx.scene.image.Image minusImageRes = new javafx.scene.image.Image("resources/decButton.png");
     private static final javafx.scene.image.Image favoriteFullImage = new javafx.scene.image.Image("resources/favorite.png");
     private static final javafx.scene.image.Image favoriteEmptyImage = new Image("resources/favorite_empty.png");
     private static final javafx.scene.image.Image infoImage= new Image("resources/informationLogo.png");
@@ -78,12 +78,7 @@ public class ProductCard extends AnchorPane {
         unitLabel.setText(product.getUnit());
         productImageView.setImage(handler.getFXImage(product));
         infoImageView.setImage(infoImage);
-        if(handler.isFavorite(product)) {
-            favoriteItem.setImage(favoriteFullImage);
-        }
-        else {
-            favoriteItem.setImage(favoriteEmptyImage);
-        }
+        setFavPic();
         if(!product.isEcological())
             ecoAnchorPane.setVisible(false);
 
@@ -91,7 +86,7 @@ public class ProductCard extends AnchorPane {
     }
     public void update() {
         productAmount.setText(String.valueOf(shoppingItem.getAmount()));
-        System.out.println(product.getName() +" " +shoppingItem.getAmount());
+        //System.out.println(product.getName() +" " +shoppingItem.getAmount());
 
         notifyListeners();
 
@@ -133,7 +128,46 @@ public class ProductCard extends AnchorPane {
             break;
         }
     }
+    @FXML
+    public void makeFavorite(){
+        if(!handler.isFavorite(this.getProduct())){
+            handler.addFavorite(this.getProduct());
+
+        }else{
+            handler.removeFavorite(this.getProduct());
+        }
+        setFavPic();
+
+    }
+    public void setFavPic(){
+        if(handler.isFavorite(product)) {
+            favoriteItem.setImage(favoriteFullImage);
+        }
+        else {
+            favoriteItem.setImage(favoriteEmptyImage);
+        }
+    }
 
 
+
+    @FXML
+    public void openDetailView(){
+        for( ICard e : listeners){
+            e.populateDetailView(this);
+            break;
+        }
+    }
+    public void updateForDetail(){
+        if(shoppingItem.getAmount()== 0){
+            buyed.toBack();
+        }
+        if(shoppingItem.getAmount()> 0){
+            buyed.toFront();
+        }
+
+
+
+        productAmount.setText(String.valueOf(shoppingItem.getAmount()));
+    }
 
 }

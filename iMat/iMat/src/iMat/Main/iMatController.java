@@ -3,6 +3,7 @@ package Main;
 import Cart.CartItem;
 import CheckoutWizard.ICheckout;
 import Feature.Feature;
+import Feature.IFeature;
 import ProductCard.ICard;
 import ProductCard.ListItemPool;
 import ProductCard.ProductCard;
@@ -10,6 +11,7 @@ import Start.startPage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,9 +25,10 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import javax.swing.*;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 
-public class iMatController implements Initializable, ICard, ICheckout {
+public class iMatController implements Initializable, ICard, ICheckout, IFeature {
 
     IMatDataHandler handler = IMatDataHandler.getInstance();
     ProductCategory category;
@@ -53,6 +56,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
             @FXML Button erbjudandenButton;
             @FXML AnchorPane pressedErbjudanden;
             boolean erbjudanden = false;
+            @FXML AnchorPane toErbPane;
         //kött
              @FXML Button meatFishButton;
             @FXML AnchorPane pressedkott;
@@ -80,8 +84,10 @@ public class iMatController implements Initializable, ICard, ICheckout {
 
 
     // flexScreen
-
+        @FXML FlowPane UnderCategoiesFlowPane;
+        @FXML AnchorPane underCatBrowse;
         @FXML Label titleLabel;
+        @FXML AnchorPane scrollPaneAnchorPane;
         @FXML ScrollPane mainScrollPane;
 
 
@@ -90,6 +96,26 @@ public class iMatController implements Initializable, ICard, ICheckout {
     // CART
     @FXML AnchorPane cartPane;
     @FXML FlowPane browseCartPane;
+
+    //DetaljVy
+    @FXML AnchorPane detailViewPane;
+    @FXML ImageView detailImageView;
+    @FXML Label detaljProduktNamn;
+    @FXML Label detaljKategori;
+    @FXML Label detaljInfo;
+    @FXML TextArea detaljInfoArea;
+    @FXML Label detaljPris;
+    @FXML Label detaljUnit;
+      @FXML ImageView closeDetail;
+        // ADDSUBB
+            @FXML ImageView decButton;
+            @FXML ImageView addButton;
+            @FXML Text productAmount;
+            /// Köp knapp
+            @FXML AnchorPane notBuy;
+
+            // lagt till i varukorgen
+        @FXML AnchorPane grattisPane;
 
     public double priceInCart = 0;
     private ListItemPool itemPool;
@@ -108,21 +134,32 @@ public class iMatController implements Initializable, ICard, ICheckout {
             CartItem cartItem = new CartItem(i);
             cartItems.put(cartItem.product.getName(),cartItem);
         }
-
+        Feature feature = new Feature();
+        feature.addObserver(this);
 
         System.out.println("hej");
-        browsePane.setVgap(10);
-        browsePane.setHgap(15);
+        browsePane.setVgap(15);
+        browsePane.setHgap(10);
 
         logoHeader.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpStartPage());
         //header
-        handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpHandla());
+        handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpErbjudanden(feature));
 
         //categories
+
+
+        erbjudandenButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpErbjudanden(feature) );
+        myFavoriteButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpMyFavorites() );
         meatFishButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpFishMeat() );
         fruktGrontButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpFruktGront() );
         mejeriButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpMejeri() );
         skafferiButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpSkafferi() );
+        kryddorButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpKryddor() );
+        brodButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setUpBrod() );
+
+        //detail
+
+
         for(ProductCard l: items ){
             l.addobservers(this);
         }
@@ -133,28 +170,10 @@ public class iMatController implements Initializable, ICard, ICheckout {
         setUpStartPage();
     }
 
-    public void setUpStartPage() {
-        resetCatPressed();
-        browsePane.getChildren().clear();
-        browsePane.getChildren().add(new Feature());
-        browsePane.getChildren().add(new startPage());
-    }
 
 
 
 
-    public void setUpHandla(){
-        resetCatPressed();
-        titleLabel.setText("Handla");
-        browsePane.getChildren().clear();
-        Feature feature = new Feature();
-        browsePane.getChildren().add(feature);
-        for(ProductCard item: items) {
-            if (item.getProduct().getCategory() == category.SWEET) {
-                browsePane.getChildren().add(item);
-            }
-        }
-    }
 
 
     public void notifyBuyChange(ProductCard e){
@@ -167,7 +186,9 @@ public class iMatController implements Initializable, ICard, ICheckout {
         HashSet<CartItem> hashSet = new HashSet<>(inCart);
         inCart.clear();
         for( CartItem h : hashSet){
-            inCart.add(h);
+            if (h.pCard.shoppingItem.getAmount() > 0) {
+                inCart.add(h);
+            }
         }
         showIncart();
     }
@@ -183,7 +204,7 @@ public class iMatController implements Initializable, ICard, ICheckout {
         priceInCart = 0;
         ArrayList<Double> inCartPrices = new ArrayList<>();
         for (CartItem cItem: inCart) {
-            System.out.println(cItem.pCard.getProduct().getName() + " hej" + cItem.pCard.shoppingItem.getAmount());
+            System.out.println(cItem.pCard.getProduct().getName() + cItem.pCard.shoppingItem.getAmount());
             cItem.updateAmount();
             browseCartPane.getChildren().add(cItem);
             if (cItem.pCard.shoppingItem.getAmount() < 1) {
@@ -224,8 +245,47 @@ public void updatePriceInd(){
 
 
     }
+
+    public void setUpStartPage() {
+        resetCatPressed();
+        browsePane.getChildren().clear();
+        browsePane.getChildren().add(new Feature());
+        browsePane.getChildren().add(new startPage());
+    }
+
+
+    public void setUpMyFavorites(){
+        resetCatPressed();
+        titleLabel.setText("Mina Favoriter");
+        pressedMyFav.toFront();
+        myFav = true;
+        browsePane.getChildren().clear();
+        for (ProductCard item: items){
+            if(handler.isFavorite(item.getProduct()))
+                browsePane.getChildren().add(item);
+
+        }
+    }
+    public void setUpErbjudanden(Feature feature){
+        resetCatPressed();
+        titleLabel.setText("Erbjudanden");
+
+        //toErbPane.toBack();
+        pressedErbjudanden.toFront();
+        erbjudanden = true;
+        browsePane.getChildren().clear();
+
+        browsePane.getChildren().add(feature);
+        for(ProductCard item: items) {
+            if (item.getProduct().getCategory() == category.SWEET) {
+                browsePane.getChildren().add(item);
+            }
+        }
+    }
+
     public void setUpFishMeat(){
         resetCatPressed();
+        //UnderCategoiesFlowPane.toFront();
         titleLabel.setText("Kött och Fisk");
         pressedkott.toFront();
         kott = true;
@@ -239,6 +299,7 @@ public void updatePriceInd(){
     }
     public void setUpFruktGront(){
         resetCatPressed();
+
         titleLabel.setText("Frukt och Grönt");
         pressedFrukt.toFront();
         frukt =true;
@@ -287,11 +348,102 @@ public void updatePriceInd(){
 
         }
     }
+    public void setUpKryddor() {
+        resetCatPressed();
+        titleLabel.setText("Kryddor");
+       pressedKryddor.toFront();
+        kryddor = true;
+        browsePane.getChildren().clear();
+        for (ProductCard item : items) {
+            if (item.getProduct().getCategory() == category.HERB) {
+                browsePane.getChildren().add(item);
+            }
+            }
+    }
+    public void setUpBrod() {
+        resetCatPressed();
+        titleLabel.setText("Bröd");
+        pressedBrod.toFront();
+        brod = true;
+        browsePane.getChildren().clear();
+        for (ProductCard item : items) {
+            if (item.getProduct().getCategory() == category.BREAD) {
+                browsePane.getChildren().add(item);
+            }
+        }
+    }
+    @FXML
+    public void search(){
+        resetCatPressed();
+        browsePane.getChildren().clear();
+        titleLabel.setText(searchBar.getText());
+        for(Product p : handler.findProducts(searchBar.getText()))
+            for(ProductCard item : items){
+                if (p == item.getProduct()){
+                    browsePane.getChildren().add(item);
+                }
+            }
+
+    }
+    public void populateDetailView(ProductCard p){
+        fixDetailView(p);
+       detailViewPane.toFront();
+    }
+    ProductCard E;
+    public void fixDetailView(ProductCard p){
+        System.out.println(p.getProduct().getName());
+
+        E =p;
+        detailImageView.setImage(handler.getFXImage(p.getProduct()));
+        detaljProduktNamn.setText(p.getProduct().getName());
+        detaljKategori.setText(p.getProduct().getCategory().name());
+        detaljInfo.setText("Produktinformation");
+        detaljPris.setText(p.getProduct().getPrice()+ " Kr");
+        detaljUnit.setText(p.getProduct().getUnit());
+        decButton.setImage(p.minusImageRes);
+        addButton.setImage((p.addImage));
+        if(p.shoppingItem.getAmount() > 0){
+        }else{
+            p.shoppingItem.setAmount(1);
+        }
+        productAmount.setText(String.valueOf(p.shoppingItem.getAmount()));
+        closeDetail.setImage(new javafx.scene.image.Image("resources/icon_close.png"));
+        notifyBuyChange(E);
+
+    }
+    @FXML
+    public void onClickdetaildec(){
+        E.shoppingItem.setAmount(E.shoppingItem.getAmount()- 1);
+        productAmount.setText(String.valueOf(E.shoppingItem.getAmount()));
+        if(E.shoppingItem.getAmount() == 0){
+            detailViewPane.toBack();
+            updateAfterDetail();
+
+        }
+        notifyBuyChange(E);
+    }
+
+    @FXML
+    public void onClickDetailAdd(){
+        E.shoppingItem.setAmount(E.shoppingItem.getAmount()+ 1);;
+        productAmount.setText(String.valueOf(E.shoppingItem.getAmount()));
+        notifyBuyChange(E);
+
+    }
+    @FXML
+    public void notBuyDetailClicked() throws InterruptedException {
+       notifyBuyChange(E);
+        updateAfterDetail();
+        grattis();
+       detailViewPane.toBack();
 
 
-
-
-
+    }
+    public void updateFromDetail() {
+        if (E.shoppingItem.getAmount() > 0) {
+            notifyBuyChange(E);
+        }
+    }
 
     public void resetCatPressed(){
         if (myFav){
@@ -329,6 +481,25 @@ public void updatePriceInd(){
 
     }
 
+    public void updateAfterDetail(){
 
+            for(ProductCard p: items){
+                for(CartItem cart: inCart){
+                    if(p.getProduct().getName() == cart.product.getName()){
+                        p.updateForDetail();
+
+                }
+            }
+        }
+
+    }
+    public void grattis() throws InterruptedException {
+        grattisPane.toFront();
+        grattisPane.toFront();
+        System.out.println("now");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("klar");
+        grattisPane.toBack();
+    }
 
 }

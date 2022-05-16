@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root fx:id="mainPane" prefHeight="240.0" prefWidth="190.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="mainPane" prefHeight="240.0" prefWidth="190.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="productImageView" fitHeight="118.0" fitWidth="146.0" layoutX="27.0" layoutY="11.5" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="infoImageView" fitHeight="24.0" fitWidth="24.0" layoutX="7.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
-      <ImageView fx:id="favoriteItem" fitHeight="24.0" fitWidth="24.0" layoutX="4.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0" />
+      <ImageView fx:id="favoriteItem" fitHeight="24.0" fitWidth="24.0" layoutX="4.0" layoutY="20.0" onMouseClicked="#makeFavorite" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0" />
       <Text fx:id="productNameText" layoutX="11.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ett väldigt långt produktnamn" textAlignment="CENTER" wrappingWidth="171.341094970703">
          <styleClass>
             <String fx:value="amountText" />
@@ -70,6 +70,8 @@
             </AnchorPane>
          </children>
       </StackPane>
+      <AnchorPane layoutX="4.0" layoutY="45.0" onMouseClicked="#openDetailView" prefHeight="138.0" prefWidth="196.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="44.0" />
+      <AnchorPane layoutX="45.0" onMouseClicked="#openDetailView" prefHeight="45.0" prefWidth="138.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="0.0" />
    </children>
    <styleClass>
       <String fx:value="shadow" />
