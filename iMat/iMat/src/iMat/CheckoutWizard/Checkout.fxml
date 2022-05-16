@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.CheckoutWizard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.CheckoutWizard">
    <children>
       <AnchorPane prefHeight="148.0" prefWidth="1222.0" styleClass="be_blue" stylesheets="@../stylingCSS/style.css">
          <children>
@@ -79,23 +78,18 @@
       </AnchorPane>
       <AnchorPane prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.rightAnchor="122.5" AnchorPane.topAnchor="170.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="70.0" stroke="BLACK" strokeType="INSIDE" styleClass="be_mediumblue" width="977.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label styleClass="checkout-title" text="Kundvagn" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="10.0" />
-            <Rectangle fill="#1f93ff57" height="550.0" stroke="BLACK" strokeType="INSIDE" width="977.0" AnchorPane.topAnchor="92.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="100.0" stroke="BLACK" strokeType="INSIDE" width="977.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <styleClass>
+                  <String fx:value="be_mediumblue" />
                   <String fx:value="radius" />
-                  <String fx:value="be_lightblue" />
                </styleClass>
             </Rectangle>
-            <Label styleClass="checkout-labels" text="Produkt" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
-            <Label styleClass="checkout-labels" text="Antal" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="100.0" />
-            <Label styleClass="checkout-labels" text="Styckpris" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="100.0" />
-            <Label styleClass="checkout-labels" text="Totalpris" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-            <ScrollPane disable="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="item-list-scroll-pane" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="135.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
+            <Rectangle fill="#1f93ff57" height="400.0" stroke="BLACK" strokeType="INSIDE" width="977.0" AnchorPane.topAnchor="130.0">
+               <styleClass>
+                  <String fx:value="radius" />
+                  <String fx:value="be_blue" />
+               </styleClass>
+            </Rectangle>
          </children>
       </AnchorPane>
    </children>

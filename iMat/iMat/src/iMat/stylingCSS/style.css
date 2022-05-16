@@ -20,8 +20,8 @@
  .radius{
      -fx-background-radius: 20;
      -fx-border-radius: 20;
-     -fx-arc-height: 20;
-     -fx-arc-width: 20;
+     -fx-arc-height: 50;
+     -fx-arc-width: 50;
  }
  .kategoriItem{
      -fx-font-size: 22px;
@@ -71,20 +71,3 @@
      -fx-font-size: 15;
      -fx-font-weight: bold;
  }
-
-.checkout-title {
-    -fx-font-size: 32;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.checkout-labels {
-    -fx-font-size: 20;
-    -fx-font-weight: bold;
-}
-
-.item-list-scroll-pane {
-    -fx-border-color: black;
-    -fx-border-width: 20;
-    -fx-background-color: transparent;
-}
