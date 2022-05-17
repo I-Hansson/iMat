@@ -20,8 +20,8 @@
  .radius{
      -fx-background-radius: 20;
      -fx-border-radius: 20;
-     -fx-arc-height: 50;
-     -fx-arc-width: 50;
+     -fx-arc-height: 20;
+     -fx-arc-width: 20;
  }
  .kategoriItem{
      -fx-font-size: 22px;
@@ -71,3 +71,65 @@
      -fx-font-size: 15;
      -fx-font-weight: bold;
  }
+ .be_blue2{
+     -fx-background-color: rgb(24, 120, 250)
+ }
+.opacityy{
+    -fx-background-color: rgba(0,0,0,0.70);
+
+}
+
+.checkout-title {
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.checkout-labels {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.item-list-scroll-pane {
+    -fx-border-color: black;
+    -fx-border-width: 20;
+    -fx-background-color: transparent;
+}
+.checkout-title {
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.checkout-labels {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.item-list-scroll-pane {
+    -fx-border-color: black;
+    -fx-border-radius: 20;
+    -fx-background-color: transparent;
+    
+}
+
+.checkout-back-button {
+    -fx-background-color: lightgray;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 22;
+}
+
+.checkout-go-forth {
+    -fx-background-color: green;
+    -fx-text-fill: black;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+.checkout-total-price-label {
+    -fx-text-fill: black;
+    -fx-underline: true;
+    -fx-font-weight: bold;
+    -fx-font-size: 26;
+}

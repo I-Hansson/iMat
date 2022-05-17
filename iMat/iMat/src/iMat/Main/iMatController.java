@@ -1,12 +1,11 @@
 package Main;
 
 import Cart.CartItem;
-
 import Feature.Feature;
 import Feature.IFeature;
 import ProductCard.ICard;
 import ProductCard.ProductCard;
-//import Start.startPage;
+import cartItemWizard.cartItemWizard;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,6 +25,8 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
+
+//import Start.startPage;
 
 
 public class iMatController implements Initializable, ICard, IFeature {
@@ -90,6 +91,10 @@ public class iMatController implements Initializable, ICard, IFeature {
         @FXML AnchorPane scrollPaneAnchorPane;
         @FXML ScrollPane mainScrollPane;
 
+            // underCat
+
+            @FXML AnchorPane underCatKott;
+
 
     @FXML FlowPane browsePane;
 
@@ -117,12 +122,17 @@ public class iMatController implements Initializable, ICard, IFeature {
             // lagt till i varukorgen
         @FXML AnchorPane grattisPane;
 
+
+        // wizard
+        @FXML AnchorPane wizardPane;
     public double priceInCart = 0;
+    @FXML FlowPane productInWizardPane;
 
      ArrayList<ProductCard> items = new ArrayList<ProductCard>();
     Hashtable <String,CartItem> cartItems = new Hashtable<>();
     ArrayList<CartItem> inCart = new ArrayList<CartItem>();
     boolean open = false;
+   ArrayList<cartItemWizard> ItemWizard = new ArrayList<cartItemWizard>();
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
@@ -133,6 +143,10 @@ public class iMatController implements Initializable, ICard, IFeature {
         for (ProductCard i : items){
             CartItem cartItem = new CartItem(i);
             cartItems.put(cartItem.product.getName(),cartItem);
+        }
+        for (ProductCard i : items){
+            cartItemWizard itemWiz = new cartItemWizard(i);
+           ItemWizard.add(itemWiz);
         }
         Feature feature = new Feature();
         //feature.addObserver(this);
@@ -196,7 +210,8 @@ public class iMatController implements Initializable, ICard, IFeature {
 
 
     public void logoClick(){
-
+        wizardPane.toBack();
+        setUpStartPage();
     }
 
     public void showIncart(){
@@ -287,6 +302,8 @@ public void updatePriceInd(){
         resetCatPressed();
         //UnderCategoiesFlowPane.toFront();
         titleLabel.setText("Kött och Fisk");
+        underCatKott.toFront();
+
         pressedkott.toFront();
         kott = true;
         browsePane.getChildren().clear();
@@ -501,5 +518,19 @@ public void updatePriceInd(){
         System.out.println("klar");
         grattisPane.toBack();
     }
+    @FXML
+    public void toKassaButtonCliked(){
+        productInWizardPane.getChildren().clear();
+        wizardPane.toFront();
+        for(cartItemWizard i: ItemWizard){
+            for(CartItem j: inCart){
+                if (i.pCard.getProduct() == j.pCard.getProduct()){
+                    i.updateItemWizard();
+                    productInWizardPane.getChildren().add(i);
+                }
+            }
+        }
+    }
+
 
 }
