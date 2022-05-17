@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="945.0" styleClass="shadow" stylesheets="@../stylingCSS/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.ShoppingcartListItem">
+   <children>
+      <ImageView fitHeight="70.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Label text="Produktnamn" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="25.0" />
+      <Spinner AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="20.0" />
+      <Label text="Produktpris" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="25.0" />
+      <Label text="Totalpris" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="25.0" />
+      <Button mnemonicParsing="false" text="Ta bort" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

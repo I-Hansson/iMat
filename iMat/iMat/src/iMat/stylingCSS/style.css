@@ -108,7 +108,28 @@
 
 .item-list-scroll-pane {
     -fx-border-color: black;
-    -fx-border-width: 20;
+    -fx-border-radius: 20;
     -fx-background-color: transparent;
     
+}
+
+.checkout-back-button {
+    -fx-background-color: lightgray;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 22;
+}
+
+.checkout-go-forth {
+    -fx-background-color: green;
+    -fx-text-fill: black;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+.checkout-total-price-label {
+    -fx-text-fill: black;
+    -fx-underline: true;
+    -fx-font-weight: bold;
+    -fx-font-size: 26;
 }
