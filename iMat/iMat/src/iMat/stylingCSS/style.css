@@ -95,3 +95,19 @@
     -fx-border-width: 20;
     -fx-background-color: transparent;
 }
+.checkout-title {
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.checkout-labels {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.item-list-scroll-pane {
+    -fx-border-color: black;
+    -fx-border-width: 20;
+    -fx-background-color: transparent;
+}

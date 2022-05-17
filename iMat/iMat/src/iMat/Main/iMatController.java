@@ -1,17 +1,15 @@
 package Main;
 
 import Cart.CartItem;
-import CheckoutWizard.ICheckout;
+
 import Feature.Feature;
 import Feature.IFeature;
 import ProductCard.ICard;
-import ProductCard.ListItemPool;
 import ProductCard.ProductCard;
-import Start.startPage;
+//import Start.startPage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,13 +20,15 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
-import javax.swing.*;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 
-public class iMatController implements Initializable, ICard, ICheckout, IFeature {
+public class iMatController implements Initializable, ICard, IFeature {
 
     IMatDataHandler handler = IMatDataHandler.getInstance();
     ProductCategory category;
@@ -118,7 +118,7 @@ public class iMatController implements Initializable, ICard, ICheckout, IFeature
         @FXML AnchorPane grattisPane;
 
     public double priceInCart = 0;
-    private ListItemPool itemPool;
+
      ArrayList<ProductCard> items = new ArrayList<ProductCard>();
     Hashtable <String,CartItem> cartItems = new Hashtable<>();
     ArrayList<CartItem> inCart = new ArrayList<CartItem>();
@@ -135,7 +135,7 @@ public class iMatController implements Initializable, ICard, ICheckout, IFeature
             cartItems.put(cartItem.product.getName(),cartItem);
         }
         Feature feature = new Feature();
-        feature.addObserver(this);
+        //feature.addObserver(this);
 
         System.out.println("hej");
         browsePane.setVgap(15);
@@ -250,7 +250,7 @@ public void updatePriceInd(){
         resetCatPressed();
         browsePane.getChildren().clear();
         browsePane.getChildren().add(new Feature());
-        browsePane.getChildren().add(new startPage());
+        //browsePane.getChildren().add(new startPage());
     }
 
 

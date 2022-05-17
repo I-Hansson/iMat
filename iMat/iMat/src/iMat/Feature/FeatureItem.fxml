@@ -11,7 +11,7 @@
       <ImageView fx:id="featureImageView" fitHeight="228.0" fitWidth="820.0" pickOnBounds="true" preserveRatio="true" styleClass="radius" />
       <AnchorPane fx:id="toErbPane" layoutX="309.0" layoutY="35.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white; -fx-opacity: 0.7;">
          <children>
-            <Button fx:id="toErbButton" layoutX="53.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#pressed" styleClass="shadow" text="Till erbjudande" />
+            <Button fx:id="toErbButton" layoutX="53.0" layoutY="103.0" mnemonicParsing="false"  styleClass="shadow" text="Till erbjudande" />
             <Text layoutX="58.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fredagsmys!" textAlignment="CENTER" wrappingWidth="84.13671875" />
          </children>
          <styleClass>
