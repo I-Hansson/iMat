@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.CheckoutWizard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.CheckoutWizard">
    <children>
       <AnchorPane prefHeight="148.0" prefWidth="1222.0" styleClass="be_blue" stylesheets="@../stylingCSS/style.css">
          <children>
@@ -40,7 +39,7 @@
                      <image>
                         <Image url="@../resources/step3_white.png" />
                      </image></ImageView>
-                  <Label layoutX="29.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" text="Leverans" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label layoutX="29.0" layoutY="16.0" text="Leverans" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -54,7 +53,7 @@
                      <image>
                         <Image url="@../resources/step2_white.png" />
                      </image></ImageView>
-                  <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" text="Uppgifter" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label text="Uppgifter" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -68,7 +67,7 @@
                      <image>
                         <Image url="@../resources/step1_red.png" />
                      </image></ImageView>
-                  <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" text="Kundvagn" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label text="Kundvagn" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -92,9 +91,9 @@
             <Label styleClass="checkout-labels" text="Antal" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="100.0" />
             <Label styleClass="checkout-labels" text="Styckpris" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="100.0" />
             <Label styleClass="checkout-labels" text="Totalpris" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-            <ScrollPane disable="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="item-list-scroll-pane" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="135.0">
+            <ScrollPane disable="true" hbarPolicy="NEVER" opacity="0.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="135.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="380.0" minWidth="947.0" prefHeight="200.0" prefWidth="200.0" styleClass="item-list-scroll-pane" />
               </content>
             </ScrollPane>
          </children>
