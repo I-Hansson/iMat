@@ -10,6 +10,8 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class cartItemWizard extends AnchorPane {
     public ProductCard pCard;
@@ -24,6 +26,7 @@ public class cartItemWizard extends AnchorPane {
     @FXML Label Unit;
     @FXML Label totalCost;
     IMatDataHandler handler = IMatDataHandler.getInstance();
+    public static final List<ICartItemWizard> listeners = new ArrayList<>();
     public cartItemWizard(ProductCard pCard){
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("wizardItem.fxml"));
@@ -47,6 +50,16 @@ public class cartItemWizard extends AnchorPane {
     public void updateItemWizard(){
         amountWiz.setText(String.valueOf(pCard.shoppingItem.getAmount()));
         totalCost.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
+    }
+    @FXML
+    public void deleteOnClick(){
+            for(ICartItemWizard e: listeners){
+                e.updateWizItem(this);
+                break;
+            }
+    }
+    public void addobservers(ICartItemWizard e){
+        listeners.add(e);
     }
 
 }

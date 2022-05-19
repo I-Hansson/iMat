@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -14,10 +15,24 @@
          </font>
       </Label>
       <Label fx:id="amountWiz" layoutX="354.0" layoutY="14.0" prefHeight="27.0" prefWidth="96.0" text="Antal" />
-      <Label fx:id="cost" layoutX="587.0" layoutY="19.0" text="kr" />
-      <Label fx:id="Unit" layoutX="606.0" layoutY="19.0" text="Label" />
+      <Label fx:id="cost" layoutX="560.0" layoutY="19.0" prefHeight="17.0" prefWidth="39.0" text="kr" />
+      <Label fx:id="Unit" layoutX="606.0" layoutY="19.0" prefHeight="17.0" prefWidth="39.0" text="Label" />
       <Label fx:id="totalCost" layoutX="754.0" layoutY="19.0" text="Label" />
       <ImageView fx:id="imageProduct" fitHeight="35.0" fitWidth="39.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane layoutX="830.0" layoutY="3.0" onMouseClicked="#deleteOnClick" prefHeight="49.0" prefWidth="66.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="16.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/delete.png" />
+               </image>
+            </ImageView>
+         </children>
+         <styleClass>
+            <String fx:value="border" />
+            <String fx:value="shadow" />
+            <String fx:value="radius" />
+         </styleClass>
+      </AnchorPane>
    </children>
    <styleClass>
       <String fx:value="border" />

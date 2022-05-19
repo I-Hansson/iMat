@@ -9,13 +9,13 @@
 
  .be_mediumblue{
      -fx-background-color: rgb(24, 74, 1);
-     -fx-fill: rgb(24, 74, 139);
-     -fx-opacity: 80%;
+     -fx-fill: rgba(24, 74, 139,0.8);
+
  }
 
 .be_lightblue{
     -fx-fill: rgb(24, 74, 139);
-    -fx-opacity: 20%;
+
 }
  .radius{
      -fx-background-radius: 20;
@@ -93,7 +93,7 @@
 .item-list-scroll-pane {
     -fx-border-color: black;
     -fx-border-width: 20;
-    -fx-background-color: transparent;
+
 }
 .checkout-title {
     -fx-font-size: 32;
@@ -102,14 +102,14 @@
 }
 
 .checkout-labels {
-    -fx-font-size: 20;
+    -fx-font-size: 22;
     -fx-font-weight: bold;
 }
 
 .item-list-scroll-pane {
     -fx-border-color: black;
     -fx-border-radius: 20;
-    -fx-background-color: transparent;
+
     
 }
 
@@ -133,6 +133,25 @@
     -fx-font-weight: bold;
     -fx-font-size: 26;
 }
+.cartPane{
+    -fx-background-color: rgba(255,255,255,0.9);
+}
+.radio-button .radio{
+    -fx-background-color: grey;
+    -fx-pref-width: 70px;
+    -fx-pref-height: 70px;
+    -fx-background-radius: 100;
+
+}
+.radio-button:hover{
+    -fx-background-color: blue;
+}
+.boldish{
+    -fx-font-style: bold;
+}
+
+
+
 
 .radio-button {
     -fx-border-width: 1px;

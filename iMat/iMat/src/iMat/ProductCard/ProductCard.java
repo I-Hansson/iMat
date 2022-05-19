@@ -1,18 +1,12 @@
 package ProductCard;
 
 
-import Main.iMatController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
@@ -53,7 +47,7 @@ public class ProductCard extends AnchorPane {
 
     public static final javafx.scene.image.Image addImage = new javafx.scene.image.Image("resources/addButton.png");
     public static final javafx.scene.image.Image minusImageRes = new javafx.scene.image.Image("resources/decButton.png");
-    private static final javafx.scene.image.Image favoriteFullImage = new javafx.scene.image.Image("resources/favorite.png");
+    private static final javafx.scene.image.Image favoriteFullImage = new javafx.scene.image.Image("resources/redHeart.png");
     private static final javafx.scene.image.Image favoriteEmptyImage = new Image("resources/favorite_empty.png");
     private static final javafx.scene.image.Image infoImage= new Image("resources/informationLogo.png");
     public static final List<ICard> listeners = new ArrayList<>();
