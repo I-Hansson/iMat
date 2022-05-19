@@ -3,14 +3,13 @@ package Cart;
 import ProductCard.ProductCard;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
-import org.w3c.dom.Text;
+import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingItem;
-
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartItem extends AnchorPane {
 
@@ -22,9 +21,10 @@ public class CartItem extends AnchorPane {
     Label amountText;
     @FXML
     Label costText;
-
+    @FXML AnchorPane deleteInCart;
     public ProductCard pCard;
     public Product product;
+    public static final List<ICartItem> listeners = new ArrayList<>();
     public CartItem(ProductCard pCard){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CartItem.fxml"));
         fxmlLoader.setRoot(this);
@@ -50,6 +50,23 @@ public class CartItem extends AnchorPane {
     public double getTotalPrice(){
         return pCard.shoppingItem.getAmount()*product.getPrice();
 
+    }
+    @FXML
+    public void deleteOnClick(){
+        for(ICartItem e: listeners){
+            e.updateCartItem(this);
+            break;
+        }
+    }
+    public void addObserver(ICartItem e){
+        listeners.add(e);
+    }
+    @FXML
+    public void detail(){
+        for(ICartItem e: listeners){
+            e.populateDetailView(this.pCard);
+            break;
+        }
     }
 
 }

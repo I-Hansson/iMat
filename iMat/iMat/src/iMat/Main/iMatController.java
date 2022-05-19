@@ -1,11 +1,13 @@
 package Main;
 
 import Cart.CartItem;
-import cartItemWizard.ICartItemWizard;
+import Cart.ICartItem;
 import Feature.Feature;
 import Feature.IFeature;
 import ProductCard.ICard;
 import ProductCard.ProductCard;
+import Start.startPage;
+import cartItemWizard.ICartItemWizard;
 import cartItemWizard.cartItemWizard;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -19,13 +21,18 @@ import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.*;
 
 import java.net.URL;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 //import Start.startPage;
 
 
-public class iMatController implements Initializable, ICard, IFeature, ICartItemWizard {
+public class iMatController implements Initializable, ICard, IFeature, ICartItemWizard, ICartItem {
     Order order = new Order();
 
     IMatDataHandler handler = IMatDataHandler.getInstance();
@@ -84,6 +91,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             Boolean brod = false;
 
 
+          @FXML  Button toErbButton;
     // flexScreen
         @FXML FlowPane UnderCategoiesFlowPane;
         @FXML AnchorPane underCatBrowse;
@@ -165,7 +173,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     // kortUppgifter
     @FXML AnchorPane betalaPane;
-
+    @FXML CheckBox saveCreditcard;
     @FXML Label errorMessage1;
     @FXML TextField kort1;
     @FXML TextField kort2;
@@ -180,16 +188,21 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     @FXML Label totalKostnadFrakt;
 
 
+//tackförbeställning
+    @FXML AnchorPane tackForBastallning;
+    @FXML Label orderNO;
+    @FXML Label orderDattum;
+    @FXML Label LeveransTid;
 
-
-
-
+    CreditCard card = handler.getCreditCard();
+    String dag;
+    String tid;
      ArrayList<ProductCard> items = new ArrayList<ProductCard>();
     Hashtable <String,CartItem> cartItems = new Hashtable<>();
     ArrayList<CartItem> inCart = new ArrayList<CartItem>();
     boolean open = false;
    ArrayList<cartItemWizard> ItemWizard = new ArrayList<cartItemWizard>();
-
+    Feature feature = new Feature();
     @Override
     public void initialize(URL url, ResourceBundle resources) {
         for(Product item: handler.getProducts()) {
@@ -204,8 +217,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             cartItemWizard itemWiz = new cartItemWizard(i);
            ItemWizard.add(itemWiz);
         }
-        Feature feature = new Feature();
-        //feature.addObserver(this);
+
+        feature.addObserver(this);
+
         setUppradiobuttons();
 
 
@@ -213,7 +227,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
         System.out.println("hej");
         browsePane.setVgap(15);
-        browsePane.setHgap(10);
+        browsePane.setHgap(25);
         productInWizardPane.setHgap(5);
         productInWizardPane.setVgap(5);
 
@@ -239,6 +253,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         for(ProductCard l: items ){
             l.addobservers(this);
         }
+
 
 
 
@@ -295,6 +310,7 @@ public void setUppradiobuttons(){
             System.out.println(cItem.pCard.getProduct().getName() + cItem.pCard.shoppingItem.getAmount());
             cItem.updateAmount();
             browseCartPane.getChildren().add(cItem);
+            cItem.addObserver(this);
             if (cItem.pCard.shoppingItem.getAmount() < 1) {
                 removeItemInCart(cItem);
             }
@@ -337,10 +353,11 @@ public void updatePriceInd(){
     public void setUpStartPage() {
         handlaHeader = false;
         updateHeader();
+        feature.toErbButton.setVisible(false);
         resetCatPressed();
         browsePane.getChildren().clear();
         browsePane.getChildren().add(new Feature());
-        //browsePane.getChildren().add(new startPage());
+        browsePane.getChildren().add(new startPage());
     }
      public void updateHeader(){
         if(handlaHeader){
@@ -369,6 +386,7 @@ public void updatePriceInd(){
     }
     public void setUpErbjudanden(Feature feature){
         handlaHeader =true;
+        feature.toErbButton.setVisible(false);
         updateHeader();
         resetCatPressed();
         titleLabel.setText("Erbjudanden");
@@ -515,7 +533,7 @@ public void updatePriceInd(){
         detailImageView.setImage(handler.getFXImage(p.getProduct()));
         detaljProduktNamn.setText(p.getProduct().getName());
         detaljKategori.setText(p.getProduct().getCategory().name());
-        detaljInfo.setText("Produktinformation");
+
         detaljPris.setText(p.getProduct().getPrice()+ " Kr");
         detaljUnit.setText(p.getProduct().getUnit());
         decButton.setImage(p.minusImageRes);
@@ -530,13 +548,15 @@ public void updatePriceInd(){
         }else{
             isFavorite.setImage(new javafx.scene.image.Image("resources/favorite_empty.png"));
         }
+
         if(p.shoppingItem.getAmount() > 0){
         }else{
             p.shoppingItem.setAmount(1);
         }
-        productAmount.setText(String.valueOf(p.shoppingItem.getAmount()));
+        productAmount.setText(String.valueOf((int)p.shoppingItem.getAmount()));
+
         closeDetail.setImage(new javafx.scene.image.Image("resources/icon_close.png"));
-        notifyBuyChange(E);
+
 
     }
     @FXML
@@ -547,7 +567,7 @@ public void updatePriceInd(){
     @FXML
     public void onClickdetaildec(){
         E.shoppingItem.setAmount(E.shoppingItem.getAmount()- 1);
-        productAmount.setText(String.valueOf(E.shoppingItem.getAmount()));
+        productAmount.setText(String.valueOf((int)E.shoppingItem.getAmount()));
         if(E.shoppingItem.getAmount() == 0){
             detailViewPane.toBack();
             updateAfterDetail();
@@ -559,8 +579,8 @@ public void updatePriceInd(){
     @FXML
     public void onClickDetailAdd(){
         E.shoppingItem.setAmount(E.shoppingItem.getAmount()+ 1);;
-        productAmount.setText(String.valueOf(E.shoppingItem.getAmount()));
-        notifyBuyChange(E);
+        productAmount.setText(String.valueOf((int)E.shoppingItem.getAmount()));
+        //notifyBuyChange(E);
 
     }
     @FXML
@@ -639,6 +659,9 @@ public void updatePriceInd(){
         e.consume();
     }
     public void downDetail(){
+        E.shoppingItem.setAmount(0);
+        notifyBuyChange(E);
+        updateAfterDetail();
         detailViewPane.toBack();
     }
 
@@ -664,19 +687,19 @@ public void updatePriceInd(){
     }
 public void updateWizItem(cartItemWizard e){
 
-    e.pCard.shoppingItem.setAmount(0);
+    e.pCard.shoppingItem.setAmount((int)0);
     notifyBuyChange(e.pCard);
     //updateAfterDetail();
     e.pCard.updateForDetail();
     toKassaButtonCliked();
-    System.out.println();
-    System.out.println("<<<<<<<<<<<");
-    for(ShoppingItem i: order.getItems()){
-        System.out.println(i.getProduct().getName());
-    }
-    System.out.println(order.getOrderNumber());
-    System.out.println(">>>>>>>>>>>>>");
+
 }
+    public void updateCartItem(CartItem e){
+        e.pCard.shoppingItem.setAmount(0);
+        notifyBuyChange(e.pCard);
+        e.pCard.updateForDetail();
+
+    }
 public void createOrder(){
     ArrayList<ShoppingItem> orderList = new ArrayList<>();
     for(CartItem i: inCart){
@@ -772,51 +795,74 @@ public void checkIfAlreadyUser(){
 }
 @FXML
 public void toBetalning(){
-            String dag;
-            String tid;
+
             if(group.getSelectedToggle() == frefor){
                 dag = "Fredag";
                 tid = "Förmiddag";
                 uppdateraBelopp();
                 betalaPane.toFront();
+                ifSavedCard();
 
             }else if(group.getSelectedToggle() == freEfter){
                 dag = "Fredag";
                 tid = "EfterMiddag";
                 uppdateraBelopp();
                 betalaPane.toFront();
-
+            ifSavedCard();
     }
+}
+public  void  saveCreditcardInfo(){
+        card.setCardNumber(kort1.getText()+" " +kort2.getText()+" " +kort3.getText()+" " +kort4.getText());
+        card.setValidMonth(Integer.parseInt(datum1.getText()));
+        card.setValidYear(Integer.parseInt(datum2.getText()));
+        card.setVerificationCode(Integer.parseInt(cvc.getText()));
+}
+public void ifSavedCard(){
+        if(!card.getCardNumber().isEmpty()){
+            String[] split = card.getCardNumber().split(" ");
+            kort1.setText(split[0]);
+            kort2.setText(split[1]);
+            kort3.setText(split[2]);
+            kort4.setText(split[3]);
+            datum1.setText(String.valueOf(card.getValidMonth()));
+            datum2.setText(String.valueOf(card.getValidYear()));
+            cvc.setText(String.valueOf(card.getVerificationCode()));
+        }
 }
 
 @FXML
     public void slutforKop(){
         updateraErrorkort();
 
-   // if(!fixErrorCard()){
-
+    if(!fixErrorCard()){
+        if(saveCreditcard.isSelected()){
+            saveCreditcardInfo();
+        }
     inCart.clear();
     showIncart();
     for(ProductCard i: items){
         i.shoppingItem.setAmount(0);
         i.updateForDetail();
     }
-       /* for(CartItem i :inCart){
-            for(ProductCard j : items){
-                if(i.product.getName() == j.getProduct().getName()){
-                    System.out.println("-----------he-----");
-                    System.out.println(i.product.getName());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+        LocalDate localDate = LocalDate.now();
+        System.out.println();
+        orderNO.setText(order.getOrderNumber()+"");
+        orderDattum.setText(dtf.format(localDate));
+        LeveransTid.setText(dag + ", " + tid);
+        tackForBastallning.toFront();
+            }
 
-                   j.shoppingItem.setAmount(0.0);
-                    notifyBuyChange(i.pCard);
-                    i.pCard.updateForDetail();
-                }
-            }*/
-    startPane.toFront();
         }
+
         //handler.placeOrder();
 
     //}
+    @FXML
+    public void toBegining(){
+        startPane.toFront();
+        setUpStartPage();
+    }
 
 
 public void uppdateraBelopp(){

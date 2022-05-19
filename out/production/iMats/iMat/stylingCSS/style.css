@@ -147,7 +147,7 @@
     -fx-background-color: blue;
 }
 .boldish{
-    -fx-font-style: bold;
+
 }
 
 
@@ -161,4 +161,20 @@
     -fx-background-radius: 0px;
     -fx-border-radius: 40px;
     -fx-padding: 0px;
+}
+.white-opacity{
+    -fx-background-color: rgba(255,255,255,0.9);
+}
+.hova{
+    -fx-background-color: white;
+}
+.hova:hover{
+    -fx-background-color: rgb(102, 178, 255);
+
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
 }

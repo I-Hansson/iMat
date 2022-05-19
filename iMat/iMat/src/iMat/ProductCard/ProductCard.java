@@ -79,9 +79,9 @@ public class ProductCard extends AnchorPane {
         update();
     }
     public void update() {
-        productAmount.setText(String.valueOf(shoppingItem.getAmount()));
-        //System.out.println(product.getName() +" " +shoppingItem.getAmount());
 
+        productAmount.setText(String.valueOf((int)shoppingItem.getAmount()));
+        //System.out.println(product.getName() +" " +shoppingItem.getAmount());
         notifyListeners();
 
     }
@@ -106,7 +106,7 @@ public class ProductCard extends AnchorPane {
         update();
     }
     public void updateAmount(){
-        productAmount.setText(String.valueOf(shoppingItem.getAmount()));
+        productAmount.setText(String.valueOf((int)shoppingItem.getAmount()));
         System.out.println(product.getName() +" " +shoppingItem.getAmount());
     }
     public Product getProduct() {
@@ -161,7 +161,7 @@ public class ProductCard extends AnchorPane {
 
 
 
-        productAmount.setText(String.valueOf(shoppingItem.getAmount()));
+        productAmount.setText(String.valueOf((int)shoppingItem.getAmount()));
     }
 
 }
