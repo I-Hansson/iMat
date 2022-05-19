@@ -13,13 +13,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.CheckoutWizard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckoutWizard.CheckoutWizard">
    <children>
       <AnchorPane prefHeight="148.0" prefWidth="1222.0" styleClass="be_blue" stylesheets="@../stylingCSS/style.css">
          <children>
@@ -39,7 +41,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" radius="40.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                  <Circle fx:id="checkout_Step4" fill="#1f93ff00" radius="40.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="170.0" AnchorPane.leftAnchor="576.0" AnchorPane.topAnchor="25.0">
@@ -53,7 +55,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" radius="40.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                  <Circle fx:id="checkout_Step3" fill="#1f93ff00" radius="40.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="170.0" AnchorPane.leftAnchor="409.0" AnchorPane.topAnchor="25.0">
@@ -67,7 +69,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" radius="40.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                  <Circle fx:id="checkout_Step2" fill="#1f93ff00" radius="40.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="222.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="170.0" AnchorPane.leftAnchor="242.0" AnchorPane.topAnchor="25.0">
@@ -81,12 +83,12 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Circle fill="#2197ff00" layoutX="129.0" layoutY="45.0" radius="40.0" stroke="#ffffff00" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                  <Circle fx:id="checkout_Step1" fill="#2197ff00" layoutX="129.0" layoutY="45.0" radius="40.0" stroke="#ffffff00" strokeType="INSIDE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane opacity="0.0" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.rightAnchor="122.5" AnchorPane.topAnchor="170.0">
+      <AnchorPane fx:id="checkout_kundvagn" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.rightAnchor="122.5" AnchorPane.topAnchor="170.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="70.0" stroke="BLACK" strokeType="INSIDE" styleClass="be_mediumblue" width="977.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label styleClass="checkout-title" text="Kundvagn" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="10.0" />
@@ -100,11 +102,19 @@
             <Label styleClass="checkout-labels" text="Antal" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="100.0" />
             <Label styleClass="checkout-labels" text="Styckpris" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="100.0" />
             <Label styleClass="checkout-labels" text="Totalpris" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-            <ScrollPane disable="true" hbarPolicy="NEVER" opacity="0.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="135.0">
-               <content>
-                  <AnchorPane minHeight="380.0" minWidth="947.0" prefHeight="380.0" prefWidth="947.0" styleClass="item-list-scroll-pane" />
-               </content>
-            </ScrollPane>
+            <AnchorPane minHeight="380.0" minWidth="947.0" prefHeight="380.0" prefWidth="947.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0">
+               <styleClass>
+                  <String fx:value="item-list-scroll-pane" />
+                  <String fx:value="radius" />
+               </styleClass>
+               <children>
+                  <ScrollPane disable="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="951.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
             <Button layoutX="15.0" layoutY="578.0" mnemonicParsing="false" text="&lt;  Fortsätt handla" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0">
                <styleClass>
                   <String fx:value="checkout-back-button" />
@@ -120,7 +130,7 @@
             <Label layoutX="813.0" layoutY="537.0" styleClass="checkout-total-price-label" text="Totalbelopp" AnchorPane.bottomAnchor="115.0" AnchorPane.rightAnchor="60.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.topAnchor="170.0">
+      <AnchorPane fx:id="checkout_Uppgifter" layoutX="10.0" layoutY="10.0" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.topAnchor="170.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="70.0" stroke="BLACK" strokeType="INSIDE" styleClass="be_mediumblue" width="977.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label styleClass="checkout-title" text="Personuppgifter" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="10.0" />
@@ -130,36 +140,62 @@
                   <String fx:value="be_lightblue" />
                </styleClass>
             </Rectangle>
-            <Label styleClass="checkout-labels" text="Förnamn:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="100.0" />
-            <Label styleClass="checkout-labels" text="Efternamn:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="170.0" />
-            <Label styleClass="checkout-labels" text="Mobilnummer:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="240.0" />
-            <Label styleClass="checkout-labels" text="Email adress:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="310.0" />
-            <Label styleClass="checkout-labels" text="Gatuadress:" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="100.0" />
-            <Label styleClass="checkout-labels" text="Postort:" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="170.0" />
-            <Label styleClass="checkout-labels" text="Postnummer:" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="240.0" />
-            <Button layoutX="15.0" layoutY="578.0" mnemonicParsing="false" text="&lt;  Gå tillbaka" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0">
-               <styleClass>
-                  <String fx:value="checkout-back-button" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </Button>
-            <Button layoutX="804.0" layoutY="606.0" mnemonicParsing="false" text="Gå vidare  &gt;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="15.0">
-               <styleClass>
-                  <String fx:value="checkout-go-forth" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </Button>
-            <TextField layoutX="220.0" layoutY="134.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="130.0" />
-            <TextField layoutX="189.0" layoutY="203.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="200.0" />
-            <TextField layoutX="196.0" layoutY="274.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="270.0" />
-            <TextField layoutX="200.0" layoutY="344.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="340.0" />
-            <TextField layoutX="589.0" layoutY="130.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="130.0" />
-            <TextField layoutX="581.0" layoutY="200.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="200.0" />
-            <TextField layoutX="589.0" layoutY="283.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="270.0" />
-            <CheckBox layoutX="597.0" layoutY="345.0" mnemonicParsing="false" text="Spara mina uppgifter till nästa köp" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="340.0" />
+            <AnchorPane onMouseClicked="#toLeverans" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: green;" styleClass="radius" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="10.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../resources/next.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="checkout-go-forth" text="Gå vidare" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="radius" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0">
+               <children>
+                  <Label styleClass="checkout-back-button" text="Gå tillbaka" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../resources/tillbaka.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <Label styleClass="checkout-labels" text="Förnamn:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="checkout_errorFornamn" layoutY="233.0" style="-fx-text-fill: transparent;" text="Vänligen fyll i förnamn" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="33.0" />
+                  <Label styleClass="checkout-labels" text="Efternamn:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="70.0" />
+                  <Label fx:id="checkout_errorEfternamn" style="-fx-text-fill: transparent;" text="Vänligen fyll i efternamn" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="105.0" />
+                  <Label styleClass="checkout-labels" text="Mobilnummer:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="140.0" />
+                  <Label fx:id="checkout_errorMobilnr" style="-fx-text-fill: transparent;" text="Ange giltligt mobilnummer" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="175.0" />
+                  <Label styleClass="checkout-labels" text="Email adress:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="210.0" />
+                  <Label fx:id="checkout_errorEmail" style="-fx-text-fill: transparent;" text="Ange giltlig email adress" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="245.0" />
+                  <Label styleClass="checkout-labels" text="Gatuadress:" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="checkout_errorGatuadress" style="-fx-text-fill: transparent;" text="Vänligen fyll i gatuadress" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="33.0" />
+                  <Label styleClass="checkout-labels" text="Postort:" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="70.0" />
+                  <Label fx:id="checkout_errorPostort" style="-fx-text-fill: transparent;" text="Vänligen fyll i postort" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="105.0" />
+                  <Label styleClass="checkout-labels" text="Postnummer:" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="140.0" />
+                  <Label fx:id="checkout_errorPostnr" style="-fx-text-fill: transparent;" text="Ange giltligt postnummer" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="175.0" />
+                  <TextField AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="30.0" />
+                  <TextField AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="100.0" />
+                  <TextField promptText="XXXXXXXXXX" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="170.0" />
+                  <TextField AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="240.0" />
+                  <TextField AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="30.0" />
+                  <TextField AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="100.0" />
+                  <TextField promptText="XXXXX" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="170.0" />
+                  <CheckBox fx:id="checkout_SaveCredentials" mnemonicParsing="false" text="Spara mina uppgifter till nästa köp" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="240.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets top="100.0" />
+               </padding>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.topAnchor="170.0">
+      <AnchorPane fx:id="checkout_Leverans" layoutX="20.0" layoutY="20.0" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.topAnchor="170.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="70.0" stroke="BLACK" strokeType="INSIDE" styleClass="be_mediumblue" width="977.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label styleClass="checkout-title" text="Välj leveranstid" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="10.0" />
@@ -169,59 +205,179 @@
                   <String fx:value="be_lightblue" />
                </styleClass>
             </Rectangle>
-            <Button layoutX="15.0" layoutY="578.0" mnemonicParsing="false" text="&lt;  Gå tillbaka" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0">
-               <styleClass>
-                  <String fx:value="checkout-back-button" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </Button>
-            <Button layoutX="804.0" layoutY="606.0" mnemonicParsing="false" text="Gå vidare  &gt;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="15.0">
-               <styleClass>
-                  <String fx:value="checkout-go-forth" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </Button>
-            <GridPane layoutX="175.0" layoutY="160.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightblue;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
                <children>
-                  <Label styleClass="checkout-labels" text="Datum 1" GridPane.columnIndex="1" />
-                  <Label styleClass="checkout-labels" text="Förmiddag" GridPane.rowIndex="1" />
-                  <Label styleClass="checkout-labels" text="Eftermiddag" GridPane.rowIndex="2" />
-                  <Label styleClass="checkout-labels" text="Datum 2" GridPane.columnIndex="2" />
-                  <Label styleClass="checkout-labels" text="Datum 5" GridPane.columnIndex="5" />
-                  <Label styleClass="checkout-labels" text="Datum 4" GridPane.columnIndex="4" />
-                  <Label styleClass="checkout-labels" text="Datum 3" GridPane.columnIndex="3" />
-                  <RadioButton mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="dateselection" />
-                     </toggleGroup>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <GridPane gridLinesVisible="true" prefHeight="225.0" prefWidth="937.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="327.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="257.0" minHeight="0.0" prefHeight="93.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="TOP_CENTER" styleClass="checkout-labels" text="Datum 1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label styleClass="checkout-labels" text="Förmiddag 08:00-12:00" textAlignment="RIGHT" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label styleClass="checkout-labels" text="Eftermiddag 14:00-16:00" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="2" />
+                        <Label styleClass="checkout-labels" text="Datum 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label styleClass="checkout-labels" text="Datum 5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label styleClass="checkout-labels" text="Datum 4" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label styleClass="checkout-labels" text="Datum 3" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" selected="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="dateselection" />
+                           </toggleGroup>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <RadioButton mnemonicParsing="false" toggleGroup="$dateselection" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+                  <Label styleClass="checkout-labels" text="Leveranskostnad: 49kr" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
-            </GridPane>
+            </AnchorPane>
+            <AnchorPane onMouseClicked="#toLeverans" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: green;" styleClass="radius" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="10.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../resources/next.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="checkout-go-forth" text="Gå vidare" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="radius" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0">
+               <children>
+                  <Label styleClass="checkout-back-button" text="Gå tillbaka" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../resources/tillbaka.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="checkout_Betalning" layoutX="20.0" layoutY="20.0" prefHeight="667.0" prefWidth="977.0" stylesheets="@../stylingCSS/style.css" AnchorPane.leftAnchor="122.5" AnchorPane.topAnchor="170.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="70.0" stroke="BLACK" strokeType="INSIDE" styleClass="be_mediumblue" width="977.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label styleClass="checkout-title" text="Kortuppgifter" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="10.0" />
+            <Rectangle fill="#1f93ff57" height="550.0" stroke="BLACK" strokeType="INSIDE" width="977.0" AnchorPane.topAnchor="92.0">
+               <styleClass>
+                  <String fx:value="radius" />
+                  <String fx:value="be_lightblue" />
+               </styleClass>
+            </Rectangle>
+            <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="radius" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0">
+               <children>
+                  <Label styleClass="checkout-back-button" text="Gå tillbaka" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../resources/tillbaka.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="450.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <Label styleClass="checkout-labels" text="Kredit- eller debitkort" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="0.0" />
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="43.0">
+                     <image>
+                        <Image url="@../resources/card.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="95.0">
+                     <image>
+                        <Image url="@../resources/calender.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="570.0" AnchorPane.topAnchor="92.0">
+                     <image>
+                        <Image url="@../resources/lock.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="checkout_errorCreditcard" layoutY="233.0" style="-fx-text-fill: transparent;" text="Fyll i giltligt kortnummer" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="50.0" />
+                  <TextField fx:id="creditcard1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="93.0" promptText="XXXX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="creditcard2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="93.0" promptText="XXXX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="40.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="creditcard3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="93.0" promptText="XXXX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="40.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="creditcard4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="93.0" promptText="XXXX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="40.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="creditcard_day" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="70.0" promptText="XX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="90.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="creditcard_year" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="70.0" promptText="XX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="90.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="creditcard_cvc" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="70.0" promptText="XXX" style="-fx-font-weight: bold;" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="90.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <CheckBox fx:id="checkout_SaveCreditcard" mnemonicParsing="false" text="Spara mina kortuppgifter till nästa köp" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="150.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <AnchorPane prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: white;" styleClass="border" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0">
+                     <children>
+                        <Label styleClass="checkout-labels" text="Produkter:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <Label styleClass="checkout-labels" text="Leveransavgift:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                        <Label styleClass="checkout-labels" text="49 kr" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" />
+                        <Label fx:id="checkout_ItemAmount" styleClass="checkout-labels" text="Produktantal" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="0.0" />
+                        <Label styleClass="checkout-labels" text="Totalbelopp:" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
+                        <Label fx:id="total_sum_checkout" styleClass="checkout-labels" text="kr" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="200.0" />
+                        <Line endX="299.5" startX="-100.0" strokeWidth="5.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane onMouseClicked="#toLeverans" prefHeight="80.0" prefWidth="220.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0">
+                     <children>
+                        <Label fx:id="checkout_Confirm" style="-fx-background-color: red;" styleClass="checkout-go-forth" text="Slutför köpet" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="radius" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </AnchorPane>
+                  <Line endX="383.5" endY="143.0" startX="404.5" startY="115.0" strokeWidth="5.0" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
