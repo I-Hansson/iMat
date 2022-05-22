@@ -4,6 +4,7 @@ import Cart.CartItem;
 import Cart.ICartItem;
 import Feature.Feature;
 import Feature.IFeature;
+import MittKonto.Account;
 import ProductCard.ICard;
 import ProductCard.ProductCard;
 import Start.startPage;
@@ -54,7 +55,10 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     AnchorPane toCartPane;
     // Under Header
     @FXML Button handlaMenuButton;
+    @FXML Button accountMenuButton;
     boolean handlaHeader = false;
+    boolean accountHeader =false;
+
     // Kategorier'
         //Mina Favoriter
             @FXML Button myFavoriteButton;
@@ -200,6 +204,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
      ArrayList<ProductCard> items = new ArrayList<ProductCard>();
     Hashtable <String,CartItem> cartItems = new Hashtable<>();
     ArrayList<CartItem> inCart = new ArrayList<CartItem>();
+    Account account = new Account();
     boolean open = false;
    ArrayList<cartItemWizard> ItemWizard = new ArrayList<cartItemWizard>();
     Feature feature = new Feature();
@@ -234,7 +239,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         logoHeader.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpStartPage());
         //header
         handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpErbjudanden(feature));
-
+        accountMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->setUpAccount() );
         //categories
 
 
@@ -260,7 +265,6 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
         setUpStartPage();
     }
-
 
 
 
@@ -349,8 +353,20 @@ public void updatePriceInd(){
 
 
     }
+    public void setUpAccount(){
+        handlaHeader = false;
+        accountHeader = true;
+        updateHeader();
+        resetCatPressed();
+        browsePane.getChildren().clear();
+
+        browsePane.getChildren().add( account);
+
+    }
+
 
     public void setUpStartPage() {
+        accountHeader = false;
         handlaHeader = false;
         updateHeader();
         feature.toErbButton.setVisible(false);
@@ -365,11 +381,18 @@ public void updatePriceInd(){
         }else{
             handlaMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
         }
+         if(accountHeader){
+             accountMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+         }else{
+            accountMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+         }
+
 
      }
 
 
     public void setUpMyFavorites(){
+        accountHeader = false;
         handlaHeader =true;
         updateHeader();
 
@@ -385,6 +408,7 @@ public void updatePriceInd(){
         }
     }
     public void setUpErbjudanden(Feature feature){
+        accountHeader = false;
         handlaHeader =true;
         feature.toErbButton.setVisible(false);
         updateHeader();
@@ -405,6 +429,7 @@ public void updatePriceInd(){
     }
 
     public void setUpFishMeat(){
+        accountHeader = false;
         handlaHeader =true;
         updateHeader();
         resetCatPressed();
@@ -424,6 +449,8 @@ public void updatePriceInd(){
         }
     }
     public void setUpFruktGront(){
+        accountHeader = false;
+
         handlaHeader =true;
         updateHeader();
         resetCatPressed();
@@ -440,6 +467,7 @@ public void updatePriceInd(){
         }
     }
     public void setUpMejeri(){
+        accountHeader = false;
         handlaHeader =true;
         updateHeader();
         resetCatPressed();
@@ -453,6 +481,7 @@ public void updatePriceInd(){
         }
     }
     public void setUpSkafferi() {
+        accountHeader = false;
         handlaHeader =true;
         updateHeader();
         resetCatPressed();
@@ -481,6 +510,7 @@ public void updatePriceInd(){
         }
     }
     public void setUpKryddor() {
+        accountHeader = false;
         handlaHeader =true;
         updateHeader();
         resetCatPressed();
@@ -495,6 +525,7 @@ public void updatePriceInd(){
             }
     }
     public void setUpBrod() {
+        accountHeader = false;
         handlaHeader =true;
         updateHeader();
         resetCatPressed();
@@ -510,6 +541,7 @@ public void updatePriceInd(){
     }
     @FXML
     public void search(){
+        accountHeader = false;
         resetCatPressed();
         browsePane.getChildren().clear();
         titleLabel.setText(searchBar.getText());
@@ -522,6 +554,7 @@ public void updatePriceInd(){
 
     }
     public void populateDetailView(ProductCard p){
+
         fixDetailView(p);
        detailViewPane.toFront();
     }
@@ -820,10 +853,13 @@ public  void  saveCreditcardInfo(){
 public void ifSavedCard(){
         if(!card.getCardNumber().isEmpty()){
             String[] split = card.getCardNumber().split(" ");
-            kort1.setText(split[0]);
-            kort2.setText(split[1]);
-            kort3.setText(split[2]);
-            kort4.setText(split[3]);
+            if(!kort1.getText().isEmpty()){
+                kort1.setText(split[0]);
+                kort2.setText(split[1]);
+                kort3.setText(split[2]);
+                kort4.setText(split[3]);
+            }
+
             datum1.setText(String.valueOf(card.getValidMonth()));
             datum2.setText(String.valueOf(card.getValidYear()));
             cvc.setText(String.valueOf(card.getVerificationCode()));
