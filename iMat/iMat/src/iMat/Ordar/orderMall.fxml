@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+
+<fx:root prefHeight="480.0" prefWidth="0.0" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="480.0" prefWidth="848.0" style="-fx-background-color: white;">
+         <styleClass>
+            <String fx:value="radius" />
+            <String fx:value="border" />
+         </styleClass>
+         <children>
+            <ScrollPane prefHeight="480.0" prefWidth="851.0" styleClass="radius">
+               <content>
+                  <FlowPane fx:id="orderPane" prefHeight="475.0" prefWidth="851.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

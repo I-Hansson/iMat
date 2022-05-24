@@ -26,6 +26,7 @@ public class Feature extends AnchorPane {
             throw new RuntimeException(exception);
         }
         featureImageView.setImage(feature);
+        featureImageView.setStyle("-fx-background-radius: 15px");
     }
 
 @FXML public void toErb(){
@@ -37,7 +38,7 @@ public class Feature extends AnchorPane {
  }
  @FXML
  public void hover(){
-     System.out.println("hwe");
+
         toErbButton.setStyle("-fx-background-color: rgb(102, 178, 255)");
 
  }

@@ -5,11 +5,16 @@ import Cart.ICartItem;
 import Feature.Feature;
 import Feature.IFeature;
 import MittKonto.Account;
+import Ordar.IOrder;
+import Ordar.Odrar;
+import Ordar.inDetail;
+import Ordar.orderItem;
 import ProductCard.ICard;
 import ProductCard.ProductCard;
 import Start.startPage;
 import cartItemWizard.ICartItemWizard;
 import cartItemWizard.cartItemWizard;
+import help.Help;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +27,7 @@ import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.*;
 
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,9 +39,10 @@ import java.util.concurrent.TimeUnit;
 //import Start.startPage;
 
 
-public class iMatController implements Initializable, ICard, IFeature, ICartItemWizard, ICartItem {
+public class iMatController implements Initializable, ICard, IFeature, ICartItemWizard, ICartItem, IOrder {
     Order order = new Order();
-
+    Odrar orderVy = new Odrar();
+    int ordernumber = 500;
     IMatDataHandler handler = IMatDataHandler.getInstance();
     Customer user = handler.getCustomer();
     ProductCategory category;
@@ -56,8 +63,12 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     // Under Header
     @FXML Button handlaMenuButton;
     @FXML Button accountMenuButton;
+    @FXML Button helpMenuButton;
+    @FXML Button odrarMenuButton;
     boolean handlaHeader = false;
     boolean accountHeader =false;
+    boolean helpHeader = false;
+    boolean orderHeader = false;
 
     // Kategorier'
         //Mina Favoriter
@@ -198,6 +209,12 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     @FXML Label orderDattum;
     @FXML Label LeveransTid;
 
+    // order detalj
+    @FXML
+       FlowPane orderDetaljvyPane;
+    @FXML AnchorPane orderDetailMAIN;
+
+    Odrar pOrder = new Odrar();
     CreditCard card = handler.getCreditCard();
     String dag;
     String tid;
@@ -223,6 +240,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
            ItemWizard.add(itemWiz);
         }
 
+        //handler.reset();
+
+
         feature.addObserver(this);
 
         setUppradiobuttons();
@@ -230,7 +250,6 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
 
-        System.out.println("hej");
         browsePane.setVgap(15);
         browsePane.setHgap(25);
         productInWizardPane.setHgap(5);
@@ -240,6 +259,8 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         //header
         handlaMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event-> setUpErbjudanden(feature));
         accountMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->setUpAccount() );
+        helpMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->setUpHelp());
+        odrarMenuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->setUpOrdrar());
         //categories
 
 
@@ -261,13 +282,38 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
 
-
-
         setUpStartPage();
     }
 
 
+    public void setUpOrdrar(){
 
+        orderVy.updateItems();
+        handlaHeader = false;
+        accountHeader = false;
+        helpHeader = false;
+        orderHeader = true;
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
+        updateHeader();
+        titleLabel.setText("Gamla ordrar");
+        browsePane.getChildren().clear();
+        browsePane.getChildren().add(orderVy);
+        for(orderItem i: orderVy.orderItems){
+
+            i.addObserver(this);
+        }
+
+
+
+    }
 
 
 
@@ -354,20 +400,42 @@ public void updatePriceInd(){
 
     }
     public void setUpAccount(){
+        orderHeader = false;
         handlaHeader = false;
         accountHeader = true;
+        helpHeader = false;
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
         updateHeader();
-        resetCatPressed();
-        browsePane.getChildren().clear();
 
+        browsePane.getChildren().clear();
+        account.ifAlreadyUser();
         browsePane.getChildren().add( account);
 
     }
 
 
     public void setUpStartPage() {
+        orderHeader = false;
         accountHeader = false;
         handlaHeader = false;
+        helpHeader = false;
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
         updateHeader();
         feature.toErbButton.setVisible(false);
         resetCatPressed();
@@ -386,19 +454,39 @@ public void updatePriceInd(){
          }else{
             accountMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
          }
+         if(helpHeader){
+             helpMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+         }else{
+             helpMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+         }
+         if(orderHeader){
+            odrarMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+         }else{
+             odrarMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+         }
 
 
      }
 
 
     public void setUpMyFavorites(){
+        orderHeader = false;
         accountHeader = false;
         handlaHeader =true;
+        helpHeader = false;
         updateHeader();
 
-        resetCatPressed();
+        myFav = true;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
         titleLabel.setText("Mina Favoriter");
-        pressedMyFav.toFront();
+
         myFav = true;
         browsePane.getChildren().clear();
         for (ProductCard item: items){
@@ -407,16 +495,50 @@ public void updatePriceInd(){
 
         }
     }
+       public void setUpHelp(){
+           orderHeader = false;
+        Help help = new Help();
+           accountHeader = false;
+           handlaHeader =false;
+           helpHeader = true;
+           myFav = false;
+           erbjudanden = false;
+           kott = false;
+           frukt = false;
+           mejeri= false;
+           skafferi= false;
+           kryddor = false;
+           brod = false;
+           updatePliancykategori();
+           updateHeader();
+           updatePliancykategori();
+           titleLabel.setText("Hjälp");
+           browsePane.getChildren().clear();
+           browsePane.getChildren().add(help);
+
+
+        }
+
     public void setUpErbjudanden(Feature feature){
+        orderHeader = false;
         accountHeader = false;
         handlaHeader =true;
+        helpHeader = false;
         feature.toErbButton.setVisible(false);
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = true;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
         titleLabel.setText("Erbjudanden");
 
         //toErbPane.toBack();
-        pressedErbjudanden.toFront();
+       //pressedErbjudanden.toFront();
         erbjudanden = true;
         browsePane.getChildren().clear();
 
@@ -427,19 +549,72 @@ public void updatePriceInd(){
             }
         }
     }
+    public void updatePliancykategori(){
+        if(kott){
+            meatFishButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+            meatFishButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(frukt){
+            fruktGrontButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+            fruktGrontButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(myFav){
+            myFavoriteButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+            myFavoriteButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(erbjudanden){
+            erbjudandenButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+            erbjudandenButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(mejeri){
+            mejeriButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+            mejeriButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(skafferi){
+            skafferiButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+           skafferiButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(kryddor){
+           kryddorButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+            kryddorButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+        if(brod){
+            brodButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+        }else{
+           brodButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+        }
+
+    }
 
     public void setUpFishMeat(){
+        orderHeader = false;
         accountHeader = false;
         handlaHeader =true;
+        helpHeader = false;
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = false;
+        kott = true;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
 
         //UnderCategoiesFlowPane.toFront();
         titleLabel.setText("Kött och Fisk");
         //underCatKott.toFront();
 
-        pressedkott.toFront();
-        kott = true;
+
+
         browsePane.getChildren().clear();
         for (ProductCard item: items){
             if(item.getProduct().getCategory()== category.FISH)
@@ -449,14 +624,23 @@ public void updatePriceInd(){
         }
     }
     public void setUpFruktGront(){
+        orderHeader = false;
         accountHeader = false;
-
+        helpHeader = false;
         handlaHeader =true;
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = true;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
 
         titleLabel.setText("Frukt och Grönt");
-        pressedFrukt.toFront();
+
         frukt =true;
         browsePane.getChildren().clear();
         for (ProductCard item: items){
@@ -467,12 +651,22 @@ public void updatePriceInd(){
         }
     }
     public void setUpMejeri(){
+        orderHeader = false;
         accountHeader = false;
         handlaHeader =true;
+        helpHeader = false;
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= true;
+        skafferi= false;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
         titleLabel.setText("Mejeri");
-        pressedMejeri.toFront();
+
         mejeri =true;
         browsePane.getChildren().clear();
         for (ProductCard item: items){
@@ -481,12 +675,22 @@ public void updatePriceInd(){
         }
     }
     public void setUpSkafferi() {
+        orderHeader = false;
         accountHeader = false;
+        helpHeader = false;
         handlaHeader =true;
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= true;
+        kryddor = false;
+        brod = false;
+        updatePliancykategori();
         titleLabel.setText("Skafferi");
-        pressedSkafferi.toFront();
+
         skafferi = true;
         browsePane.getChildren().clear();
         for (ProductCard item : items) {
@@ -510,12 +714,22 @@ public void updatePriceInd(){
         }
     }
     public void setUpKryddor() {
+        orderHeader = false;
         accountHeader = false;
+        helpHeader = false;
         handlaHeader =true;
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = true;
+        brod = false;
+        updatePliancykategori();
         titleLabel.setText("Kryddor");
-       pressedKryddor.toFront();
+
         kryddor = true;
         browsePane.getChildren().clear();
         for (ProductCard item : items) {
@@ -525,12 +739,22 @@ public void updatePriceInd(){
             }
     }
     public void setUpBrod() {
+        orderHeader = false;
         accountHeader = false;
         handlaHeader =true;
+        helpHeader = false;
         updateHeader();
-        resetCatPressed();
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri= false;
+        skafferi= false;
+        kryddor = false;
+        brod = true;
+        updatePliancykategori();;
         titleLabel.setText("Bröd");
-        pressedBrod.toFront();
+
         brod = true;
         browsePane.getChildren().clear();
         for (ProductCard item : items) {
@@ -541,7 +765,10 @@ public void updatePriceInd(){
     }
     @FXML
     public void search(){
+        orderHeader = false;
+        handlaHeader =true;
         accountHeader = false;
+        helpHeader = false;
         resetCatPressed();
         browsePane.getChildren().clear();
         titleLabel.setText(searchBar.getText());
@@ -851,20 +1078,41 @@ public  void  saveCreditcardInfo(){
         card.setVerificationCode(Integer.parseInt(cvc.getText()));
 }
 public void ifSavedCard(){
-        if(!card.getCardNumber().isEmpty()){
-            String[] split = card.getCardNumber().split(" ");
-            if(!kort1.getText().isEmpty()){
+            String[] split = {""};
+            split = card.getCardNumber().split(" ");
+
+            if(split.length >= 1){
                 kort1.setText(split[0]);
+            }
+
+            if(split.length >= 2){
                 kort2.setText(split[1]);
+            }
+            if(split.length >= 3){
                 kort3.setText(split[2]);
+            }
+            if(split.length >= 4 ){
                 kort4.setText(split[3]);
             }
 
-            datum1.setText(String.valueOf(card.getValidMonth()));
-            datum2.setText(String.valueOf(card.getValidYear()));
-            cvc.setText(String.valueOf(card.getVerificationCode()));
+
+            if(card.getValidMonth() == 0){
+                datum1.setText("");
+            }else{
+                datum1.setText(String.valueOf(card.getValidMonth()));
+            }
+            if(card.getValidYear() == 0){
+                datum2.setText("");
+            }else{
+                datum2.setText(String.valueOf(card.getValidYear()));
+            }
+            if(card.getVerificationCode() == 0){
+                cvc.setText("");
+            }else{
+                cvc.setText(String.valueOf(card.getVerificationCode()));
+            }
         }
-}
+
 
 @FXML
     public void slutforKop(){
@@ -874,14 +1122,28 @@ public void ifSavedCard(){
         if(saveCreditcard.isSelected()){
             saveCreditcardInfo();
         }
+        System.out.println("---");
+        for(CartItem item: inCart){
+            System.out.println(item.pCard.shoppingItem.getAmount());
+            handler.getShoppingCart().addItem(item.pCard.shoppingItem);
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+        LocalDate localDate = LocalDate.now();
+         ordernumber = (int)(Math.random() * 1000) + 2000;
+
+        System.out.println(order.getOrderNumber());
+
+        handler.placeOrder();
+        handler.getOrders().get(handler.getOrders().size() - 1) .setOrderNumber(ordernumber);
+
+        orderVy.updateItems();
     inCart.clear();
     showIncart();
     for(ProductCard i: items){
-        i.shoppingItem.setAmount(0);
+        i.setNewShopingitem(i.shoppingItem);
         i.updateForDetail();
     }
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
-        LocalDate localDate = LocalDate.now();
+
         System.out.println();
         orderNO.setText(order.getOrderNumber()+"");
         orderDattum.setText(dtf.format(localDate));
@@ -891,7 +1153,9 @@ public void ifSavedCard(){
 
         }
 
-        //handler.placeOrder();
+    public Date convertToDateViaSqlDate(LocalDate dateToConvert) {
+        return java.sql.Date.valueOf(dateToConvert);
+    }
 
     //}
     @FXML
@@ -960,6 +1224,29 @@ public void updateraErrorkort(){
         errorMessage1.setText("");
     errorMessage1.setStyle("-fx-text-fill: white");
 
+}
+public void showOrder(String orderNr){
+    orderDetaljvyPane.getChildren().clear();
+    double amount = 0;
+    orderVy.updateItems();
+    for(Order o: handler.getOrders()){
+
+        if(o.getOrderNumber() == Integer.parseInt(orderNr)){
+            for (ShoppingItem item : o.getItems()){
+                inDetail produkt = new inDetail(item);
+
+                orderDetaljvyPane.getChildren().add(produkt);
+
+
+
+            }
+            orderDetailMAIN.toFront();
+        }
+    }
+}
+@FXML
+    public void orderBack(){
+        orderDetailMAIN.toBack();
 }
 
 }

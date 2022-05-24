@@ -178,3 +178,17 @@
 .scroll-pane {
     -fx-background-color: transparent;
 }
+.text-area .content {
+    -fx-background-color: -fx-background;
+}
+
+.text-area  {
+    -fx-background-color: -fx-background;
+}
+.buttons{
+    -fx-font-size: 22px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+}

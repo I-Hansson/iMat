@@ -78,6 +78,10 @@ public class ProductCard extends AnchorPane {
 
         update();
     }
+    public void setNewShopingitem(ShoppingItem shop){
+        this.shoppingItem= new ShoppingItem(shop.getProduct(),0);
+
+    }
     public void update() {
 
         productAmount.setText(String.valueOf((int)shoppingItem.getAmount()));

@@ -78,6 +78,7 @@ public void personCliked(){
     kort = false;
     checkIS();
     personPane.toFront();
+
 }
 @FXML
 public void kortCliked(){
@@ -107,16 +108,29 @@ public void saveDetails(){
     user.setAddress(gatuAddress.getText());
     user.setPostAddress(postOrt.getText());
     user.setPostCode(postNummer.getText());
-    System.out.println("sparad!");
+
 
     card.setCardNumber(kort1.getText()+" " +kort2.getText()+" " +kort3.getText()+" " +kort4.getText());
-    if(!datum1.getText().isEmpty()){
-        card.setValidMonth(Integer.parseInt(datum1.getText()));
-        card.setValidYear(Integer.parseInt(datum2.getText()));
-        card.setVerificationCode(Integer.parseInt(cvc.getText()));
+        if(datum1.getText() == ""){
+            card.setValidMonth(0);
+        }else{
+            card.setValidMonth(Integer.parseInt(datum1.getText()));
+        }
+        if(datum2.getText() == ""){
+            card.setValidYear(0);
+        }else{
+            card.setValidYear(Integer.parseInt(datum2.getText()));
+    }
+     if(cvc.getText() == ""){
+        card.setVerificationCode(0);
+      }else{
+         card.setVerificationCode(Integer.parseInt(cvc.getText()));
     }
 
-    System.out.println("sparad!");
+
+
+
+    System.out.println("sparad!!");
 
 }
 public void ifAlreadyUser() {
@@ -130,18 +144,41 @@ public void ifAlreadyUser() {
         postNummer.setText(user.getPostCode());
 
     }
-    if (!card.getCardNumber().isEmpty()) {
-        String[] split = card.getCardNumber().split(" ");
-        /*kort1.setText(split[0]);
-        kort2.setText(split[1]);
-        kort3.setText(split[2]);
-        kort4.setText(split[3]);*/
-        datum1.setText(String.valueOf(card.getValidMonth()));
-        datum2.setText(String.valueOf(card.getValidYear()));
-        cvc.setText(String.valueOf(card.getVerificationCode()));
+        String[] split = {""};
+        split = card.getCardNumber().split(" ");
+        if(split.length >= 1){
+            kort1.setText(split[0]);
+        }
 
+
+        if(split.length >= 2){
+            kort2.setText(split[1]);
+        }
+    if(split.length >= 3){
+        kort3.setText(split[2]);
+    }
+    if(split.length >= 4 ){
+        kort4.setText(split[3]);
     }
 
+
+
+
+        if(card.getValidMonth() == 0){
+            datum1.setText("");
+        }else{
+            datum1.setText(String.valueOf(card.getValidMonth()));
+        }
+    if(card.getValidYear() == 0){
+        datum2.setText("");
+    }else{
+        datum2.setText(String.valueOf(card.getValidYear()));
+    }
+    if(card.getVerificationCode() == 0){
+        cvc.setText("");
+    }else{
+        cvc.setText(String.valueOf(card.getVerificationCode()));
+    }
 
 }
 }
