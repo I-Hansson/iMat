@@ -120,7 +120,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     Button kryddorButton;
     @FXML
     AnchorPane pressedKryddor;
-    Boolean kryddor = false;
+    Boolean dricka = false;
     //Bröd
     @FXML
     Button brodButton;
@@ -136,6 +136,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     FlowPane UnderCategoiesFlowPane;
     @FXML
     FlowPane UnderFlowPane;
+    @FXML AnchorPane UnderAnchorPane;
     @FXML
     AnchorPane underCatBrowse;
     @FXML
@@ -394,6 +395,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     public void setUpOrdrar() {
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderFlowPane.setVisible(false);
+        UnderAnchorPane.setVisible(false);
 
         orderVy.updateItems();
         handlaHeader = false;
@@ -406,7 +410,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -508,6 +512,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpAccount() {
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderAnchorPane.setVisible(false);
+        UnderFlowPane.setVisible(false);
         orderHeader = false;
         handlaHeader = false;
         accountHeader = true;
@@ -518,7 +525,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -532,6 +539,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     public void setUpStartPage() {
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderAnchorPane.setVisible(false);
+        UnderFlowPane.setVisible(false);
         orderHeader = false;
         accountHeader = false;
         handlaHeader = false;
@@ -542,9 +552,10 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
+        titleLabel.setText("Start");
         updatePliancykategori();
         updateHeader();
         feature.toErbButton.setVisible(false);
@@ -581,6 +592,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     public void setUpMyFavorites() {
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderAnchorPane.setVisible(false);
+        UnderFlowPane.setVisible(false);
         orderHeader = false;
         accountHeader = false;
         handlaHeader = true;
@@ -593,7 +607,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -609,6 +623,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpHelp() {
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderAnchorPane.setVisible(false);
+        UnderFlowPane.setVisible(false);
         orderHeader = false;
         Help help = new Help();
         accountHeader = false;
@@ -620,7 +637,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -634,6 +651,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpErbjudanden(Feature feature) {
+        UnderFlowPane.setVisible(false);
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderAnchorPane.setVisible(false);
         orderHeader = false;
         accountHeader = false;
         handlaHeader = true;
@@ -646,7 +666,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -696,7 +716,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         } else {
             skafferiButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
         }
-        if (kryddor) {
+        if (dricka) {
             kryddorButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
         } else {
             kryddorButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
@@ -726,7 +746,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -735,8 +755,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         titleLabel.setText("Kött och Fisk");
         //underCatKott.toFront();
 
-
-        scrollPaneAnchorPane.setTranslateY(30);
+       UnderFlowPane.setVisible(true);
+        scrollPaneAnchorPane.setTranslateY(50);
+        UnderAnchorPane.setVisible(true);
         browsePane.getChildren().clear();
         UnderFlowPane.getChildren().clear();
         setUpsubcategoriPANE("Kött & Fisk");
@@ -755,12 +776,19 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             tempButton.setToggleGroup(subCatGroup);
             tempButton.getStyleClass().remove("radio-button");
             tempButton.getStyleClass().add("toggle-button");
+            tempButton.getStyleClass().add("under");
+            tempButton.getStyleClass().add("border");
+            tempButton.setTranslateY(7);
+            tempButton.setTranslateX(8);
             UnderFlowPane.getChildren().add(tempButton);
         }
 
     }
 
     public void setUpFruktGront() {
+        scrollPaneAnchorPane.setTranslateY(50);
+        UnderFlowPane.setVisible(true);
+        UnderAnchorPane.setVisible(true);
         orderHeader = false;
         accountHeader = false;
         helpHeader = false;
@@ -772,7 +800,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = true;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -796,6 +824,10 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         }
     }
     public void setUpGront() {
+        scrollPaneAnchorPane.setTranslateY(50);
+
+        UnderFlowPane.setVisible(true);
+        UnderAnchorPane.setVisible(true);
         orderHeader = false;
         accountHeader = false;
         helpHeader = false;
@@ -807,7 +839,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = true;
         updatePliancykategori();
@@ -836,6 +868,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpMejeri() {
+        scrollPaneAnchorPane.setTranslateY(50);
+        UnderFlowPane.setVisible(true);
+        UnderAnchorPane.setVisible(true);
         orderHeader = false;
         accountHeader = false;
         handlaHeader = true;
@@ -847,7 +882,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = true;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -864,6 +899,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpSkafferi() {
+        scrollPaneAnchorPane.setTranslateY(50);
+        UnderFlowPane.setVisible(true);
+        UnderAnchorPane.setVisible(true);
         orderHeader = false;
         accountHeader = false;
         helpHeader = false;
@@ -875,7 +913,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = true;
-        kryddor = false;
+        dricka = false;
         brod = false;
         gront = false;
         updatePliancykategori();
@@ -902,10 +940,14 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             }
 
 
+
         }
     }
 
     public void setUpKryddor() {
+        scrollPaneAnchorPane.setTranslateY(50);
+        UnderFlowPane.setVisible(true);
+        UnderAnchorPane.setVisible(true);
         orderHeader = false;
         accountHeader = false;
         helpHeader = false;
@@ -917,22 +959,28 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = true;
+        dricka = true;
         brod = false;
+
         gront = false;
         updatePliancykategori();
-        titleLabel.setText("Kryddor");
+        titleLabel.setText("Drycker");
+        subCatGroup.selectToggle(null);
+        setUpsubcategoriPANE("Drycker");
 
-        kryddor = true;
+
         browsePane.getChildren().clear();
         for (ProductCard item : items) {
-            if (item.getProduct().getCategory() == category.HERB) {
+            if (item.getProduct().getCategory() == category.HOT_DRINKS || item.getProduct().getCategory() == category.COLD_DRINKS) {
                 browsePane.getChildren().add(item);
             }
         }
     }
 
     public void setUpBrod() {
+        scrollPaneAnchorPane.setTranslateY(50);
+        UnderFlowPane.setVisible(true);
+        UnderAnchorPane.setVisible(true);
         orderHeader = false;
         accountHeader = false;
         handlaHeader = true;
@@ -944,7 +992,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         frukt = false;
         mejeri = false;
         skafferi = false;
-        kryddor = false;
+        dricka = false;
         brod = true;
         gront = false;
         updatePliancykategori();
@@ -963,6 +1011,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     @FXML
     public void search() {
+        scrollPaneAnchorPane.setTranslateY(15);
+        UnderFlowPane.setVisible(false);
+        UnderAnchorPane.setVisible(false);
         orderHeader = false;
         handlaHeader = true;
         accountHeader = false;
@@ -1088,9 +1139,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             pressedSkafferi.toBack();
             skafferi = false;
         }
-        if (kryddor) {
+        if (dricka) {
             pressedKryddor.toBack();
-            kryddor = false;
+            dricka = false;
         }
         if (brod) {
             pressedBrod.toBack();

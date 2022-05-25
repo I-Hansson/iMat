@@ -192,3 +192,21 @@
     -fx-background-color: white;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
 }
+
+.under{
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+
+    -fx-background-color: white;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 10,0,0,1 );
+}
+.under:hover{
+    -fx-background-color: rgb(102, 178, 255);
+}
+.under:selected{
+    -fx-background-color: rgb(51, 153, 255)
+}
+.underblue{
+   -fx-background-color: rgb(50,95,255);
+ }

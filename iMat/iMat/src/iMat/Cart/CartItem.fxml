@@ -7,21 +7,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="cartItemPanee" prefHeight="50.0" prefWidth="230.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="cartItemPanee" prefHeight="75.0" prefWidth="242.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <styleClass>
       <String fx:value="border" />
       <String fx:value="radius" />
    </styleClass>
    <children>
-      <Label fx:id="productNameText" layoutX="14.0" layoutY="15.0" prefHeight="20.0" prefWidth="77.0" stylesheets="@../stylingCSS/style.css" text="Ekologisk hel kyckling" wrapText="true">
+      <Label fx:id="productNameText" layoutX="16.0" layoutY="8.0" prefHeight="27.0" prefWidth="178.0" stylesheets="@../stylingCSS/style.css" text="Ekologisk hel kyckling" wrapText="true">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="amountText" layoutX="98.0" layoutY="15.0" prefHeight="20.0" prefWidth="43.0" stylesheets="@../stylingCSS/style.css" text="4000" />
-      <Label fx:id="costText" layoutX="134.0" layoutY="15.0" prefHeight="20.0" prefWidth="53.0" stylesheets="@../stylingCSS/style.css" text="kr/kg" />
-      <AnchorPane fx:id="deleteInCart" layoutX="179.0" layoutY="8.0" prefHeight="32.0" prefWidth="43.0">
+      <Label fx:id="amountText" layoutX="17.0" layoutY="39.0" prefHeight="20.0" prefWidth="43.0" stylesheets="@../stylingCSS/style.css" text="4000">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="costText" layoutX="60.0" layoutY="42.0" prefHeight="20.0" prefWidth="60.0" stylesheets="@../stylingCSS/style.css" text="kr/påse">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <AnchorPane fx:id="deleteInCart" layoutX="186.0" layoutY="18.0" prefHeight="41.0" prefWidth="51.0">
          <children>
-            <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="6.0" layoutY="1.0" onMouseClicked="#deleteOnClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="10.0" layoutY="5.0" onMouseClicked="#deleteOnClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/delete.png" />
                </image>
@@ -33,6 +39,6 @@
             <String fx:value="radius" />
          </styleClass>
       </AnchorPane>
-      <AnchorPane layoutY="-4.0" onMouseClicked="#detail" prefHeight="50.0" prefWidth="175.0" />
+      <AnchorPane layoutY="-4.0" onMouseClicked="#detail" prefHeight="75.0" prefWidth="184.0" />
    </children>
 </fx:root>
