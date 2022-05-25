@@ -530,7 +530,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         gront = false;
         updatePliancykategori();
         updateHeader();
-
+        titleLabel.setText("Mitt konto");
         browsePane.getChildren().clear();
         account.ifAlreadyUser();
         browsePane.getChildren().add(account);
@@ -777,7 +777,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             tempButton.getStyleClass().remove("radio-button");
             tempButton.getStyleClass().add("toggle-button");
             tempButton.getStyleClass().add("under");
-            tempButton.getStyleClass().add("border");
+            //tempButton.getStyleClass().add();
             tempButton.setTranslateY(7);
             tempButton.setTranslateX(8);
             UnderFlowPane.getChildren().add(tempButton);
@@ -1407,7 +1407,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
             System.out.println(order.getOrderNumber());
 
-            handler.placeOrder();
+            //handler.placeOrder();
             handler.getOrders().get(handler.getOrders().size() - 1).setOrderNumber(ordernumber);
 
             orderVy.updateItems();
