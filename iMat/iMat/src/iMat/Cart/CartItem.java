@@ -44,7 +44,7 @@ public class CartItem extends AnchorPane {
 
     }
     public void updateAmount(){
-        amountText.setText(String.valueOf(pCard.shoppingItem.getAmount()));
+        amountText.setText(String.valueOf((int)pCard.shoppingItem.getAmount()));
         costText.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
     }
     public double getTotalPrice(){
@@ -67,6 +67,22 @@ public class CartItem extends AnchorPane {
             e.populateDetailView(this.pCard);
             break;
         }
+    }
+    @FXML
+    public void cartADD(){
+        for(ICartItem e: listeners){
+            e.addCart(this.pCard);
+            break;
+        }
+
+    }
+    @FXML
+    public void cartDEC(){
+        for(ICartItem e: listeners){
+            e.decCart(this.pCard);
+            break;
+        }
+
     }
 
 }

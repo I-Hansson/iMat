@@ -108,7 +108,7 @@
 
 .item-list-scroll-pane {
     -fx-border-color: black;
-    -fx-border-radius: 20;
+    -fx-border-radius: 1;
 
     
 }
@@ -136,16 +136,7 @@
 .cartPane{
     -fx-background-color: rgba(255,255,255,0.9);
 }
-.radio-button .radio{
-    -fx-background-color: grey;
-    -fx-pref-width: 70px;
-    -fx-pref-height: 70px;
-    -fx-background-radius: 100;
 
-}
-.radio-button:hover{
-    -fx-background-color: blue;
-}
 .boldish{
 
 }
@@ -153,15 +144,7 @@
 
 
 
-.radio-button {
-    -fx-border-width: 1px;
-    -fx-border-color: #000;
-    -fx-background-color: transparent;
-    -fx-background-image: null;
-    -fx-background-radius: 0px;
-    -fx-border-radius: 40px;
-    -fx-padding: 0px;
-}
+
 .white-opacity{
     -fx-background-color: rgba(255,255,255,0.9);
 }
@@ -210,3 +193,16 @@
 .underblue{
    -fx-background-color: rgb(50,95,255);
  }
+.leveransButton{
+
+    -fx-background-color: lightgrey;
+    -fx-background-radius: 100px;
+
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+}
+.leveransButton:hover{
+    -fx-background-color: rgb(102, 178, 255);
+}
+.leveransButton:selected{
+    -fx-background-color: rgb(50,95,255)
+}

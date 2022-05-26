@@ -253,11 +253,32 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     CheckBox checkBoxSparaUppgifter;
 
     //leverans
-    ToggleGroup group = new ToggleGroup();
+    @FXML Label leveransError;
+    ToggleGroup leveransGroup = new ToggleGroup();
     @FXML
     RadioButton frefor;
     @FXML
     RadioButton freEfter;
+    @FXML
+    RadioButton lorFor;
+    @FXML
+    RadioButton sonFor;
+    @FXML
+    RadioButton monFor;
+    @FXML
+    RadioButton tisFor;
+    @FXML
+    RadioButton lorEfter;
+    @FXML
+    RadioButton sonEfter;
+    @FXML
+    RadioButton monEfter;
+    @FXML
+    RadioButton tisEfter;
+
+
+
+
 
 
     // kortUppgifter
@@ -358,7 +379,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             }
         });
 
-        browsePane.setVgap(15);
+        browsePane.setVgap(25);
         browsePane.setHgap(25);
         productInWizardPane.setHgap(5);
         productInWizardPane.setVgap(5);
@@ -446,14 +467,55 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUppradiobuttons() {
-
         frefor.getStyleClass().remove("radio-button");
         frefor.getStyleClass().add("toggle-button");
-        frefor.setToggleGroup(group);
+        frefor.getStyleClass().add("leveransButton");
+        frefor.setToggleGroup(leveransGroup);
+
+        lorFor.getStyleClass().remove("radio-button");
+        lorFor.getStyleClass().add("toggle-button");
+        lorFor.getStyleClass().add("leveransButton");
+        lorFor.setToggleGroup(leveransGroup);
+
+        sonFor.getStyleClass().remove("radio-button");
+        sonFor.getStyleClass().add("toggle-button");
+        sonFor.getStyleClass().add("leveransButton");
+        sonFor.setToggleGroup(leveransGroup);
+
+        monFor.getStyleClass().remove("radio-button");
+        monFor.getStyleClass().add("toggle-button");
+        monFor.getStyleClass().add("leveransButton");
+        monFor.setToggleGroup(leveransGroup);
+
+        tisFor.getStyleClass().remove("radio-button");
+        tisFor.getStyleClass().add("toggle-button");
+        tisFor.getStyleClass().add("leveransButton");
+        tisFor.setToggleGroup(leveransGroup);
+
+        lorEfter.getStyleClass().remove("radio-button");
+        lorEfter.getStyleClass().add("toggle-button");
+        lorEfter.getStyleClass().add("leveransButton");
+        lorEfter.setToggleGroup(leveransGroup);
+
+        sonEfter.getStyleClass().remove("radio-button");
+        sonEfter.getStyleClass().add("toggle-button");
+        sonEfter.getStyleClass().add("leveransButton");
+        sonEfter.setToggleGroup(leveransGroup);
+
+        monEfter.getStyleClass().remove("radio-button");
+        monEfter.getStyleClass().add("toggle-button");
+        monEfter.getStyleClass().add("leveransButton");
+        monEfter.setToggleGroup(leveransGroup);
+
+        tisEfter.getStyleClass().remove("radio-button");
+        tisEfter.getStyleClass().add("toggle-button");
+        tisEfter.getStyleClass().add("leveransButton");
+        tisEfter.setToggleGroup(leveransGroup);
 
         freEfter.getStyleClass().remove("radio-button");
         freEfter.getStyleClass().add("toggle-button");
-        freEfter.setToggleGroup(group);
+        freEfter.getStyleClass().add("leveransButton");
+        freEfter.setToggleGroup(leveransGroup);
 
     }
 
@@ -1044,9 +1106,10 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         E = p;
         detailImageView.setImage(handler.getFXImage(p.getProduct()));
         detaljProduktNamn.setText(p.getProduct().getName());
-        detaljKategori.setText(p.getProduct().getCategory().name());
 
-        detaljPris.setText(p.getProduct().getPrice() + " Kr");
+        detaljKategori.setText(categoryToString(p.getProduct().getCategory()));
+
+        detaljPris.setText(p.getProduct().getPrice()+"");
         detaljUnit.setText(p.getProduct().getUnit());
         decButton.setImage(p.minusImageRes);
         addButton.setImage((p.addImage));
@@ -1061,15 +1124,12 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             isFavorite.setImage(new javafx.scene.image.Image("resources/favorite_empty.png"));
         }
 
-        if (p.shoppingItem.getAmount() > 0) {
-        } else {
-            p.shoppingItem.setAmount(1);
+        if (p.shoppingItem.getAmount() < 0) {
+            p.shoppingItem.setAmount(0);
         }
         productAmount.setText(String.valueOf((int) p.shoppingItem.getAmount()));
 
         closeDetail.setImage(new javafx.scene.image.Image("resources/icon_close.png"));
-
-
     }
 
     @FXML
@@ -1077,12 +1137,28 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         E.makeFavorite();
         fixDetailView(E);
     }
+    public void addCart(ProductCard p){
+        p.shoppingItem.setAmount(p.shoppingItem.getAmount() + 1);
+
+        productAmount.setText(String.valueOf((int) p.shoppingItem.getAmount()));
+        updateAfterDetail();
+        notifyBuyChange(p);
+    }
+    public void decCart(ProductCard p){
+        p.shoppingItem.setAmount(p.shoppingItem.getAmount() - 1);
+        productAmount.setText(String.valueOf((int) p.shoppingItem.getAmount()));
+        if (p.shoppingItem.getAmount() == 0 || p.shoppingItem.getAmount() == -1 ) {
+            detailViewPane.toBack();
+        }
+        updateAfterDetail();
+        notifyBuyChange(p);
+    }
 
     @FXML
     public void onClickdetaildec() {
         E.shoppingItem.setAmount(E.shoppingItem.getAmount() - 1);
         productAmount.setText(String.valueOf((int) E.shoppingItem.getAmount()));
-        if (E.shoppingItem.getAmount() == 0) {
+        if (E.shoppingItem.getAmount() == 0 || E.shoppingItem.getAmount() == -1 ) {
             detailViewPane.toBack();
             updateAfterDetail();
 
@@ -1095,7 +1171,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         E.shoppingItem.setAmount(E.shoppingItem.getAmount() + 1);
         ;
         productAmount.setText(String.valueOf((int) E.shoppingItem.getAmount()));
-        //notifyBuyChange(E);
+        notifyBuyChange(E);
 
     }
 
@@ -1179,7 +1255,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void downDetail() {
-        E.shoppingItem.setAmount(0);
+        //E.shoppingItem.setAmount(0);
         notifyBuyChange(E);
         updateAfterDetail();
         detailViewPane.toBack();
@@ -1206,6 +1282,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     }
 
+
     public void updateWizItem(cartItemWizard e) {
 
         e.pCard.shoppingItem.setAmount((int) 0);
@@ -1214,6 +1291,22 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         e.pCard.updateForDetail();
         toKassaButtonCliked();
 
+    }
+    public void addWizItem(cartItemWizard e){
+
+        e.pCard.shoppingItem.setAmount((int)e.pCard.shoppingItem.getAmount() + 1);
+        notifyBuyChange(e.pCard);
+        //updateAfterDetail();
+        e.pCard.updateForDetail();
+        toKassaButtonCliked();
+    }
+    public void decWizItem(cartItemWizard e){
+
+        e.pCard.shoppingItem.setAmount((int)e.pCard.shoppingItem.getAmount() - 1);
+        notifyBuyChange(e.pCard);
+        //updateAfterDetail();
+        e.pCard.updateForDetail();
+        toKassaButtonCliked();
     }
 
     public void updateCartItem(CartItem e) {
@@ -1328,20 +1421,72 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     @FXML
     public void toBetalning() {
 
-        if (group.getSelectedToggle() == frefor) {
-            dag = "Fredag";
-            tid = "Förmiddag";
+        if (leveransGroup.getSelectedToggle() == frefor) {
+            dag = "Fredag 3/6";
+            tid = "8:00 - 12:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
 
-        } else if (group.getSelectedToggle() == freEfter) {
-            dag = "Fredag";
-            tid = "EfterMiddag";
+        } else if (leveransGroup.getSelectedToggle() == freEfter) {
+            dag = "Fredag 3/6";
+            tid = "14:00 - 16:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == lorFor) {
+            dag = "Lördag 4/6";
+            tid = " 8:00 - 12:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == lorEfter) {
+            dag = "Lördag 4/6";
+            tid = " 14:00 - 16:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == sonFor) {
+            dag = "Söndag 4/6";
+            tid = " 8:00 - 12:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == sonEfter) {
+            dag = "Söndag 4/6";
+            tid = " 14:00 - 16:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == monFor) {
+            dag = "Måndag 4/6";
+            tid = " 8:00 - 12:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == monEfter) {
+            dag = "Måndag 4/6";
+            tid = " 14:00 - 16:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == tisFor) {
+            dag = "Tisdag 4/6";
+            tid = " 8:00 - 12:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else if (leveransGroup.getSelectedToggle() == tisEfter) {
+            dag = "Tisdag 4/6";
+            tid = " 14:00 - 16:00";
+            uppdateraBelopp();
+            betalaPane.toFront();
+            ifSavedCard();
+        }else{
+            leveransError.setStyle("-fx-text-fill: red");
         }
+
+
     }
 
     public void saveCreditcardInfo() {
@@ -1403,11 +1548,11 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             }
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
             LocalDate localDate = LocalDate.now();
-            ordernumber = (int) (Math.random() * 1000) + 2000;
+            ordernumber = (int) (Math.random() * 2001) + 3000;
 
             System.out.println(order.getOrderNumber());
 
-            //handler.placeOrder();
+            handler.placeOrder();
             handler.getOrders().get(handler.getOrders().size() - 1).setOrderNumber(ordernumber);
 
             orderVy.updateItems();
@@ -1660,5 +1805,13 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             default -> null;
         };
 
+    }
+    @FXML
+    public void hoverCross(){
+        closeDetail.setImage(new javafx.scene.image.Image("resources/icon_close_hover.png"));
+    }
+    @FXML
+    public void hoverCrossnot(){
+        closeDetail.setImage(new javafx.scene.image.Image("resources/icon_close.png"));
     }
 }

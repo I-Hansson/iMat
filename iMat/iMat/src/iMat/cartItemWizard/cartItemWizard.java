@@ -48,7 +48,7 @@ public class cartItemWizard extends AnchorPane {
         totalCost.setText(String.valueOf(pCard.shoppingItem.getAmount() * product.getPrice()));
     }
     public void updateItemWizard(){
-        amountWiz.setText(String.valueOf(pCard.shoppingItem.getAmount()));
+        amountWiz.setText(String.valueOf((int) pCard.shoppingItem.getAmount()));
         totalCost.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
     }
     @FXML
@@ -60,6 +60,20 @@ public class cartItemWizard extends AnchorPane {
     }
     public void addobservers(ICartItemWizard e){
         listeners.add(e);
+    }
+    @FXML
+    public void inWizAdd(){
+        for(ICartItemWizard e: listeners){
+            e.addWizItem(this);
+            break;
+        }
+    }
+    @FXML
+    public void inWizdec(){
+        for(ICartItemWizard e: listeners){
+            e.decWizItem(this);
+            break;
+        }
     }
 
 }

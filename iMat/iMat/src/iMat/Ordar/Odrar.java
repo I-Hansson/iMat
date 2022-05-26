@@ -44,9 +44,9 @@ public class Odrar  extends AnchorPane {
             for (Order o : handler.getOrders()) {
 
 
-                if( 2000 < o.getOrderNumber()){
+                if( 2999 < o.getOrderNumber()){
 
-                    double amount = 0;
+                    double amount = 49;
                    // System.out.println(o.getOrderNumber());
                     orderItem item = new orderItem();
 
@@ -59,7 +59,7 @@ public class Odrar  extends AnchorPane {
 
                     for (ShoppingItem shop : o.getItems()) {
 
-                       // System.out.println(shop.getProduct().getName());
+                        System.out.println(shop.getProduct().getName());
                         amount += shop.getProduct().getPrice() * shop.getAmount();
                         //System.out.println("----");
                         //System.out.println( shop.getAmount());
@@ -82,6 +82,7 @@ public class Odrar  extends AnchorPane {
             }
 
         }
+        System.out.println("----");
     }
     public List getList(){
 

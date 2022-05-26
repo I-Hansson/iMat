@@ -17,13 +17,9 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="amountText" layoutX="17.0" layoutY="39.0" prefHeight="20.0" prefWidth="43.0" stylesheets="@../stylingCSS/style.css" text="4000">
+      <Label fx:id="costText" layoutX="121.0" layoutY="38.0" prefHeight="20.0" prefWidth="60.0" stylesheets="@../stylingCSS/style.css" text="kr/påse">
          <font>
             <Font name="System Bold" size="16.0" />
-         </font></Label>
-      <Label fx:id="costText" layoutX="60.0" layoutY="42.0" prefHeight="20.0" prefWidth="60.0" stylesheets="@../stylingCSS/style.css" text="kr/påse">
-         <font>
-            <Font name="System Bold" size="14.0" />
          </font></Label>
       <AnchorPane fx:id="deleteInCart" layoutX="186.0" layoutY="18.0" prefHeight="41.0" prefWidth="51.0">
          <children>
@@ -39,6 +35,25 @@
             <String fx:value="radius" />
          </styleClass>
       </AnchorPane>
-      <AnchorPane layoutY="-4.0" onMouseClicked="#detail" prefHeight="75.0" prefWidth="184.0" />
+      <AnchorPane layoutX="-1.0" layoutY="-4.0" onMouseClicked="#detail" prefHeight="75.0" prefWidth="185.0" />
+      <AnchorPane layoutX="6.0" layoutY="35.0" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css">
+         <children>
+            <Label fx:id="amountText" alignment="CENTER" layoutX="40.0" layoutY="8.0" prefHeight="25.0" prefWidth="30.0" stylesheets="@../stylingCSS/style.css" text="1" AnchorPane.topAnchor="3.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="5.0" layoutY="8.0" onMouseClicked="#cartDEC" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.5">
+               <image>
+                  <Image url="@../resources/decButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="70.0" layoutY="8.0" onMouseClicked="#cartADD" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.5">
+               <image>
+                  <Image url="@../resources/addbutton.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </fx:root>
