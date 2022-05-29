@@ -59,7 +59,7 @@ public class ProductCard extends AnchorPane {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-        System.out.println(shoppingItem.getAmount());
+        //System.out.println(shoppingItem.getAmount());
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
