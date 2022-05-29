@@ -365,7 +365,9 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         }
 
         //handler.reset();
+        for(Order i : handler.getOrders()){
 
+        }
 
         feature.addObserver(this);
 
@@ -664,6 +666,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     }
+
 
 
     public void setUpMyFavorites() {
@@ -1509,37 +1512,37 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             betalaPane.toFront();
             ifSavedCard();
         }else if (leveransGroup.getSelectedToggle() == sonFor) {
-            dag = "Söndag 4/6";
+            dag = "Söndag 5/6";
             tid = " 8:00 - 12:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
         }else if (leveransGroup.getSelectedToggle() == sonEfter) {
-            dag = "Söndag 4/6";
+            dag = "Söndag 5/6";
             tid = " 14:00 - 16:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
         }else if (leveransGroup.getSelectedToggle() == monFor) {
-            dag = "Måndag 4/6";
+            dag = "Måndag 6/6";
             tid = " 8:00 - 12:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
         }else if (leveransGroup.getSelectedToggle() == monEfter) {
-            dag = "Måndag 4/6";
+            dag = "Måndag 6/6";
             tid = " 14:00 - 16:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
         }else if (leveransGroup.getSelectedToggle() == tisFor) {
-            dag = "Tisdag 4/6";
+            dag = "Tisdag 7/6";
             tid = " 8:00 - 12:00";
             uppdateraBelopp();
             betalaPane.toFront();
             ifSavedCard();
         }else if (leveransGroup.getSelectedToggle() == tisEfter) {
-            dag = "Tisdag 4/6";
+            dag = "Tisdag 7/6";
             tid = " 14:00 - 16:00";
             uppdateraBelopp();
             betalaPane.toFront();
