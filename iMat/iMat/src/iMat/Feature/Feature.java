@@ -14,6 +14,7 @@ public class Feature extends AnchorPane {
     public static final List<IFeature> listeners = new ArrayList<>();
     @FXML private ImageView featureImageView;
     @FXML  public AnchorPane toErbButton;
+    @FXML  public AnchorPane toErbPane;
     private static final javafx.scene.image.Image feature = new javafx.scene.image.Image("resources/feature.png");
     IMatDataHandler handler = IMatDataHandler.getInstance();
     public Feature(){
@@ -41,6 +42,9 @@ public class Feature extends AnchorPane {
 
         toErbButton.setStyle("-fx-background-color: rgb(102, 178, 255)");
 
+ }
+ public void resize(){
+        toErbPane.setPrefHeight(50);
  }
 
 }

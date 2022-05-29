@@ -45,7 +45,8 @@ public class CartItem extends AnchorPane {
     }
     public void updateAmount(){
         amountText.setText(String.valueOf((int)pCard.shoppingItem.getAmount()));
-        costText.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
+
+        costText.setText((Math.round(pCard.shoppingItem.getAmount()*product.getPrice() * 100.0)/100.0) + " Kr");
     }
     public double getTotalPrice(){
         return pCard.shoppingItem.getAmount()*product.getPrice();

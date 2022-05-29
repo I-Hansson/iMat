@@ -17,13 +17,13 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="costText" layoutX="121.0" layoutY="38.0" prefHeight="20.0" prefWidth="60.0" stylesheets="@../stylingCSS/style.css" text="kr/påse">
+      <Label fx:id="costText" layoutX="121.0" layoutY="38.0" prefHeight="25.0" prefWidth="75.0" stylesheets="@../stylingCSS/style.css" text="kr/påse">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <AnchorPane fx:id="deleteInCart" layoutX="186.0" layoutY="18.0" prefHeight="41.0" prefWidth="51.0">
+      <AnchorPane fx:id="deleteInCart" layoutX="197.0" layoutY="18.0" prefHeight="41.0" prefWidth="40.0">
          <children>
-            <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="10.0" layoutY="5.0" onMouseClicked="#deleteOnClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="43.0" layoutX="4.0" layoutY="5.0" onMouseClicked="#deleteOnClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/delete.png" />
                </image>
@@ -35,7 +35,7 @@
             <String fx:value="radius" />
          </styleClass>
       </AnchorPane>
-      <AnchorPane layoutX="-1.0" layoutY="-4.0" onMouseClicked="#detail" prefHeight="75.0" prefWidth="185.0" />
+      <AnchorPane layoutX="-1.0" layoutY="-4.0" onMouseClicked="#detail" prefHeight="75.0" prefWidth="195.0" />
       <AnchorPane layoutX="6.0" layoutY="35.0" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css">
          <children>
             <Label fx:id="amountText" alignment="CENTER" layoutX="40.0" layoutY="8.0" prefHeight="25.0" prefWidth="30.0" stylesheets="@../stylingCSS/style.css" text="1" AnchorPane.topAnchor="3.0">

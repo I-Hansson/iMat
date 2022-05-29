@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -38,13 +39,17 @@ public class Odrar  extends AnchorPane {
 
     public void updateItems() {
         if (!handler.getOrders().isEmpty()) {
-            //Collections.reverse(handler.getOrders());
+            if(handler.getOrders().get(0).getOrderNumber() < handler.getOrders().get(handler.getOrders().size() - 1).getOrderNumber()){
+                Collections.reverse(handler.getOrders());
+            }
+
+
             orderPane.getChildren().clear();
 
             for (Order o : handler.getOrders()) {
 
 
-                if( 2999 < o.getOrderNumber()){
+                if( 4999< o.getOrderNumber()){
 
                     double amount = 49;
                    // System.out.println(o.getOrderNumber());
@@ -59,7 +64,7 @@ public class Odrar  extends AnchorPane {
 
                     for (ShoppingItem shop : o.getItems()) {
 
-                        System.out.println(shop.getProduct().getName());
+                        //System.out.println(shop.getProduct().getName());
                         amount += shop.getProduct().getPrice() * shop.getAmount();
                         //System.out.println("----");
                         //System.out.println( shop.getAmount());

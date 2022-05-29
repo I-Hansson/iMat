@@ -111,17 +111,17 @@ public void saveDetails(){
 
 
     card.setCardNumber(kort1.getText()+" " +kort2.getText()+" " +kort3.getText()+" " +kort4.getText());
-        if(datum1.getText() == ""){
+        if(datum1.getText().equals("")){
             card.setValidMonth(0);
         }else{
             card.setValidMonth(Integer.parseInt(datum1.getText()));
         }
-        if(datum2.getText() == ""){
+        if(datum2.getText() .equals("")){
             card.setValidYear(0);
         }else{
             card.setValidYear(Integer.parseInt(datum2.getText()));
     }
-     if(cvc.getText() == ""){
+     if(cvc.getText().equals("")){
         card.setVerificationCode(0);
       }else{
          card.setVerificationCode(Integer.parseInt(cvc.getText()));
@@ -133,6 +133,7 @@ public void saveDetails(){
     System.out.println("sparad!!");
 
 }
+
 public void ifAlreadyUser() {
     if (!user.getFirstName().isEmpty()) {
         fornamn.setText(user.getFirstName());
@@ -160,15 +161,11 @@ public void ifAlreadyUser() {
     if(split.length >= 4 ){
         kort4.setText(split[3]);
     }
-
-
-
-
-        if(card.getValidMonth() == 0){
-            datum1.setText("");
-        }else{
-            datum1.setText(String.valueOf(card.getValidMonth()));
-        }
+    if(card.getValidMonth() == 0){
+        datum1.setText("");
+    }else{
+        datum1.setText(String.valueOf(card.getValidMonth()));
+    }
     if(card.getValidYear() == 0){
         datum2.setText("");
     }else{

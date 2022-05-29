@@ -184,6 +184,8 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     AnchorPane ecoAnchorPane;
     @FXML
     ImageView isFavorite;
+    @FXML
+    AnchorPane notBuyDetail;
     // ADDSUBB
     @FXML
     ImageView decButton;
@@ -201,6 +203,8 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     // wizard
+    @FXML
+    Label errorNoProdukt;
     @FXML
     AnchorPane wizardPane;
     public double priceInCart = 0;
@@ -303,6 +307,11 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     TextField datum2;
     @FXML
     TextField cvc;
+    @FXML
+    Label errorCVC;
+
+    @FXML
+    Label errorBetalaDatum1;
 
     @FXML
     Label kortProdukterCost;
@@ -419,7 +428,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         scrollPaneAnchorPane.setTranslateY(15);
         UnderFlowPane.setVisible(false);
         UnderAnchorPane.setVisible(false);
-
+        resetScroll();
         orderVy.updateItems();
         handlaHeader = false;
         accountHeader = false;
@@ -522,6 +531,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     public void logoClick() {
         wizardPane.toBack();
+
         setUpStartPage();
     }
 
@@ -556,7 +566,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void updatePriceInd() {
-        cartPriceIndicator.setText(String.valueOf(priceInCart + " Kr"));
+        cartPriceIndicator.setText(String.valueOf((Math.round(priceInCart * 100.0)/100.0) + " Kr"));
     }
 
 
@@ -574,6 +584,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpAccount() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(15);
         UnderAnchorPane.setVisible(false);
         UnderFlowPane.setVisible(false);
@@ -601,6 +612,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     public void setUpStartPage() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(15);
         UnderAnchorPane.setVisible(false);
         UnderFlowPane.setVisible(false);
@@ -628,6 +640,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void updateHeader() {
+        resetScroll();
         if (handlaHeader) {
             handlaMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
         } else {
@@ -654,6 +667,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
 
     public void setUpMyFavorites() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(15);
         UnderAnchorPane.setVisible(false);
         UnderFlowPane.setVisible(false);
@@ -685,6 +699,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpHelp() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(15);
         UnderAnchorPane.setVisible(false);
         UnderFlowPane.setVisible(false);
@@ -713,6 +728,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpErbjudanden(Feature feature) {
+        resetScroll();
         UnderFlowPane.setVisible(false);
         scrollPaneAnchorPane.setTranslateY(15);
         UnderAnchorPane.setVisible(false);
@@ -722,6 +738,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         helpHeader = false;
         feature.toErbButton.setVisible(false);
         updateHeader();
+        feature.resize();
         myFav = false;
         erbjudanden = true;
         kott = false;
@@ -748,6 +765,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void updatePliancykategori() {
+
         if (kott) {
             meatFishButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
         } else {
@@ -797,6 +815,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpFishMeat() {
+        resetScroll();
         orderHeader = false;
         accountHeader = false;
         handlaHeader = true;
@@ -832,6 +851,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpsubcategoriPANE(String mainCat) {
+        resetScroll();
         UnderFlowPane.getChildren().clear();
         for (ProductCategory pC : mainHash.get(mainCat)) {
             RadioButton tempButton = new RadioButton(categoryToString(pC));
@@ -848,6 +868,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpFruktGront() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(50);
         UnderFlowPane.setVisible(true);
         UnderAnchorPane.setVisible(true);
@@ -886,6 +907,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         }
     }
     public void setUpGront() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(50);
 
         UnderFlowPane.setVisible(true);
@@ -930,6 +952,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpMejeri() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(50);
         UnderFlowPane.setVisible(true);
         UnderAnchorPane.setVisible(true);
@@ -961,6 +984,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpSkafferi() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(50);
         UnderFlowPane.setVisible(true);
         UnderAnchorPane.setVisible(true);
@@ -1007,6 +1031,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpKryddor() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(50);
         UnderFlowPane.setVisible(true);
         UnderAnchorPane.setVisible(true);
@@ -1040,6 +1065,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void setUpBrod() {
+        resetScroll();
         scrollPaneAnchorPane.setTranslateY(50);
         UnderFlowPane.setVisible(true);
         UnderAnchorPane.setVisible(true);
@@ -1123,9 +1149,13 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         } else {
             isFavorite.setImage(new javafx.scene.image.Image("resources/favorite_empty.png"));
         }
-
-        if (p.shoppingItem.getAmount() < 0) {
+        notBuyDetail.toFront();
+        notBuyDetail.setVisible(true);
+        if (p.shoppingItem.getAmount() <= 0) {
             p.shoppingItem.setAmount(0);
+        }else{
+            notBuyDetail.toBack();
+            notBuyDetail.setVisible(false);
         }
         productAmount.setText(String.valueOf((int) p.shoppingItem.getAmount()));
 
@@ -1159,9 +1189,10 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         E.shoppingItem.setAmount(E.shoppingItem.getAmount() - 1);
         productAmount.setText(String.valueOf((int) E.shoppingItem.getAmount()));
         if (E.shoppingItem.getAmount() == 0 || E.shoppingItem.getAmount() == -1 ) {
-            detailViewPane.toBack();
-            updateAfterDetail();
-
+            //detailViewPane.toBack();
+            //updateAfterDetail();
+            notBuyDetail.toFront();
+            notBuyDetail.setVisible(true);
         }
         notifyBuyChange(E);
     }
@@ -1177,11 +1208,16 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     @FXML
     public void notBuyDetailClicked() throws InterruptedException {
-        notifyBuyChange(E);
+
+        System.out.println("klick");
         updateAfterDetail();
+        notBuyDetail.toBack();
+        notBuyDetail.setVisible(false);
+        E.shoppingItem.setAmount((int)1);
+        //detailViewPane.toBack();
+        productAmount.setText(String.valueOf((int) E.shoppingItem.getAmount()));
 
-        detailViewPane.toBack();
-
+        notifyBuyChange(E);
 
     }
 
@@ -1277,11 +1313,28 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             }
         }
         createOrder();
-        totalPriceWiz.setText("Totalbelopp: " + priceInCart + " Kr");
+        errorNoProdukt.setVisible(false);
+        totalPriceWiz.setText("Totalbelopp: " + (Math.round(priceInCart*100.0)/100.0) + " Kr");
 
 
     }
+    public void resetScroll(){
+        mainScrollPane.setVvalue(0);
+    }
+    @FXML
+    public void todorar(){
+        startPane.toFront();
+        setUpOrdrar();
 
+    }
+    @FXML
+    public void backToUppgifter(){
+        uppgifterPane.toFront();
+    }
+    @FXML
+    public void backToprod(){
+        wizardPane.toFront();
+    }
 
     public void updateWizItem(cartItemWizard e) {
 
@@ -1331,8 +1384,13 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     @FXML
     public void toUppgifter() {
-        uppgifterPane.toFront();
-        checkIfAlreadyUser();
+        if(!inCart.isEmpty()){
+            uppgifterPane.toFront();
+            checkIfAlreadyUser();
+        }else{
+            errorNoProdukt.setVisible(true);
+        }
+
     }
 
     @FXML
@@ -1350,7 +1408,11 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             leveransPane.toFront();
         }
     }
-
+    @FXML
+    public void backToLeverans()
+    {
+        leveransPane.toFront();
+    }
 
     public boolean fixErrors() {
         boolean isError = false;
@@ -1538,6 +1600,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         updateraErrorkort();
 
         if (!fixErrorCard()) {
+
             if (saveCreditcard.isSelected()) {
                 saveCreditcardInfo();
             }
@@ -1548,12 +1611,17 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             }
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
             LocalDate localDate = LocalDate.now();
+
             ordernumber = (int) (Math.random() * 2001) + 3000;
-
-            System.out.println(order.getOrderNumber());
-
-            handler.placeOrder();
-            handler.getOrders().get(handler.getOrders().size() - 1).setOrderNumber(ordernumber);
+            int  hej = 0;
+            for(Order i: handler.getOrders()){
+                if(i.getOrderNumber() > hej){
+                    hej = i.getOrderNumber();
+                }
+            }
+                handler.placeOrder();
+            System.out.println(hej+1);
+            handler.getOrders().get(handler.getOrders().size() - 1).setOrderNumber(hej +1);
 
             orderVy.updateItems();
             inCart.clear();
@@ -1564,7 +1632,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             }
 
             System.out.println();
-            orderNO.setText(order.getOrderNumber() + "");
+            orderNO.setText(hej+1 + "");
             orderDattum.setText(dtf.format(localDate));
             LeveransTid.setText(dag + ", " + tid);
             tackForBastallning.toFront();
@@ -1590,19 +1658,22 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         for (ShoppingItem p : order.getItems()) {
             cost += p.getAmount() * p.getProduct().getPrice();
         }
-        kortProdukterCost.setText(cost + " Kr");
-        totalKostnadFrakt.setText(cost + 49 + "Kr");
+        kortProdukterCost.setText((Math.round(cost*100.0)/100.0) + " Kr");
+        totalKostnadFrakt.setText((Math.round((cost + 49)*100.0)/100.0) + "Kr");
     }
 
     public boolean fixErrorCard() {
         boolean isError = false;
+
         if (kort1.getText().length() != 4) {
+            isError = true;
             errorMessage1.setText("Fel antal siffror i första fältet");
             errorMessage1.setStyle("-fx-text-fill: RED");
             if (kort1.getText().isEmpty()) {
                 errorMessage1.setText("Första fältet är inte ifyllt");
                 errorMessage1.setStyle("-fx-text-fill: RED");
             }
+
         } else if (kort2.getText().length() != 4) {
             isError = true;
             errorMessage1.setText("Fel antal siffror i andra fältet");
@@ -1611,6 +1682,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
                 errorMessage1.setText("Andra fältet är inte ifyllt");
                 errorMessage1.setStyle("-fx-text-fill: RED");
             }
+            return isError;
         } else if (kort3.getText().length() != 4) {
             isError = true;
             errorMessage1.setText("Fel antal siffror i tredje fälte");
@@ -1619,6 +1691,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
                 errorMessage1.setText("Tredje fältet är inte ifyllt");
                 errorMessage1.setStyle("-fx-text-fill: RED");
             }
+            return isError;
         } else if (kort4.getText().length() != 4) {
             isError = true;
             errorMessage1.setText("Fel antal siffror i fjärde fälte");
@@ -1627,15 +1700,35 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
                 errorMessage1.setText("Fjärde fältet är inte ifyllt");
                 errorMessage1.setStyle("-fx-text-fill: RED");
             }
+            return isError;
         }
-        if (datum1.getText().isEmpty()) {
+        if (datum1.getText().length() != 2) {
             isError = true;
+            errorBetalaDatum1.setText("Fel antal siffror i månad");
+           errorBetalaDatum1.setStyle("-fx-text-fill: RED");
+            if (datum1.getText().isEmpty()) {
+              errorBetalaDatum1.setText("Månad inte ifylld");
+                errorBetalaDatum1.setStyle("-fx-text-fill: RED");
+            }
+
         }
-        if (datum2.getText().isEmpty()) {
+        else if (datum2.getText().length() != 2) {
             isError = true;
+            errorBetalaDatum1.setText("Fel antal siffror i år");
+            errorBetalaDatum1.setStyle("-fx-text-fill: RED");
+            if (datum2.getText().isEmpty()) {
+                errorBetalaDatum1.setText("År inte ifylld");
+                errorBetalaDatum1.setStyle("-fx-text-fill: RED");
+            }
         }
-        if (datum2.getText().isEmpty()) {
+        if (cvc.getText().length() != 3) {
             isError = true;
+           errorCVC.setText("Fel antal siffror i CVC");
+            errorCVC.setStyle("-fx-text-fill: RED");
+            if (cvc.getText().isEmpty()) {
+                errorCVC.setText("CVC inte ifylld");
+                errorCVC.setStyle("-fx-text-fill: RED");
+            }
         }
         return isError;
 
@@ -1644,7 +1737,8 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     public void updateraErrorkort() {
         errorMessage1.setText("");
         errorMessage1.setStyle("-fx-text-fill: white");
-
+        errorBetalaDatum1.setStyle("-fx-text-fill: white");
+        errorCVC.setStyle("-fx-text-fill: white");
     }
 
     public void showOrder(String orderNr) {

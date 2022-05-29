@@ -49,7 +49,7 @@ public class cartItemWizard extends AnchorPane {
     }
     public void updateItemWizard(){
         amountWiz.setText(String.valueOf((int) pCard.shoppingItem.getAmount()));
-        totalCost.setText(pCard.shoppingItem.getAmount()*product.getPrice() + " Kr");
+        totalCost.setText((Math.round(pCard.shoppingItem.getAmount()*product.getPrice() * 100.0)/100.0) + " Kr");
     }
     @FXML
     public void deleteOnClick(){

@@ -32,67 +32,17 @@
                   <Label layoutX="25.0" layoutY="10.0" prefHeight="28.0" prefWidth="154.0" text="Kortuppgifter" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="saveButton" layoutX="380.0" layoutY="386.0" onMouseClicked="#saveDetails" prefHeight="47.0" prefWidth="97.0">
+            <AnchorPane fx:id="saveButton" layoutX="380.0" layoutY="378.0" onMouseClicked="#saveDetails" prefHeight="40.0" prefWidth="97.0">
                <styleClass>
                   <String fx:value="kategoriItem" />
                   <String fx:value="border" />
                   <String fx:value="radius" />
                </styleClass>
                <children>
-                  <Label layoutX="20.0" layoutY="10.0" prefHeight="28.0" prefWidth="70.0" text="Spara " />
+                  <Label layoutX="20.0" layoutY="6.0" prefHeight="28.0" prefWidth="70.0" text="Spara " />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="personPane" layoutX="71.0" layoutY="93.0" prefHeight="294.0" prefWidth="624.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="85.0">
-               <children>
-                  <Label layoutX="179.0" layoutY="14.0" prefHeight="37.0" prefWidth="89.0" text="Förnamn: ">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="179.0" layoutY="76.0" prefHeight="37.0" prefWidth="97.0" text="Efternamn:">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="179.0" layoutY="140.0" prefHeight="37.0" prefWidth="135.0" text="Mobilnummer:">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="179.0" layoutY="204.0" prefHeight="37.0" prefWidth="135.0" text="E-mail address:">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="fornamn" layoutX="179.0" layoutY="47.0" prefHeight="28.0" prefWidth="149.0" />
-                  <TextField fx:id="efternamn" layoutX="179.0" layoutY="112.0" prefHeight="28.0" prefWidth="149.0" />
-                  <TextField fx:id="mobilNummer" layoutX="179.0" layoutY="176.0" prefHeight="28.0" prefWidth="149.0" />
-                  <TextField fx:id="email" layoutX="179.0" layoutY="241.0" prefHeight="28.0" prefWidth="149.0" />
-                  <Label layoutX="367.0" layoutY="14.0" prefHeight="37.0" prefWidth="119.0" text="Gatuaddress:">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="gatuAddress" layoutX="367.0" layoutY="47.0" prefHeight="28.0" prefWidth="149.0" />
-                  <Label layoutX="367.0" layoutY="76.0" prefHeight="37.0" prefWidth="119.0" text="Postort:">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="postOrt" layoutX="367.0" layoutY="113.0" prefHeight="28.0" prefWidth="149.0" />
-                  <Label layoutX="367.0" layoutY="141.0" prefHeight="37.0" prefWidth="119.0" text="Postnummer:">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="postNummer" layoutX="367.0" layoutY="177.0" prefHeight="28.0" prefWidth="149.0" />
-               </children>
-               <styleClass>
-                  <String fx:value="border" />
-                  <String fx:value="radius" />
-               </styleClass>
-            </AnchorPane>
-            <AnchorPane fx:id="cardPane" layoutX="71.0" layoutY="93.0" prefHeight="294.0" prefWidth="735.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="85.0">
+            <AnchorPane fx:id="cardPane" layoutX="71.0" layoutY="93.0" prefHeight="286.0" prefWidth="699.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="85.0">
                <styleClass>
                   <String fx:value="border" />
                   <String fx:value="radius" />
@@ -160,6 +110,56 @@
                   </ImageView>
                   <AnchorPane layoutX="268.0" layoutY="163.0" prefHeight="6.0" prefWidth="34.0" rotate="-52.7" style="-fx-background-color: black;" />
                </children>
+            </AnchorPane>
+            <AnchorPane fx:id="personPane" layoutX="71.0" layoutY="93.0" prefHeight="286.0" prefWidth="699.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="85.0">
+               <children>
+                  <Label layoutX="179.0" layoutY="14.0" prefHeight="37.0" prefWidth="89.0" text="Förnamn: ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="76.0" prefHeight="37.0" prefWidth="97.0" text="Efternamn:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="140.0" prefHeight="37.0" prefWidth="135.0" text="Mobilnummer:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="204.0" prefHeight="37.0" prefWidth="135.0" text="E-mail address:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fornamn" layoutX="179.0" layoutY="47.0" prefHeight="28.0" prefWidth="149.0" />
+                  <TextField fx:id="efternamn" layoutX="179.0" layoutY="112.0" prefHeight="28.0" prefWidth="149.0" />
+                  <TextField fx:id="mobilNummer" layoutX="179.0" layoutY="176.0" prefHeight="28.0" prefWidth="149.0" />
+                  <TextField fx:id="email" layoutX="179.0" layoutY="241.0" prefHeight="28.0" prefWidth="149.0" />
+                  <Label layoutX="367.0" layoutY="14.0" prefHeight="37.0" prefWidth="119.0" text="Gatuaddress:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="gatuAddress" layoutX="367.0" layoutY="47.0" prefHeight="28.0" prefWidth="149.0" />
+                  <Label layoutX="367.0" layoutY="76.0" prefHeight="37.0" prefWidth="119.0" text="Postort:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="postOrt" layoutX="367.0" layoutY="113.0" prefHeight="28.0" prefWidth="149.0" />
+                  <Label layoutX="367.0" layoutY="141.0" prefHeight="37.0" prefWidth="119.0" text="Postnummer:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="postNummer" layoutX="367.0" layoutY="177.0" prefHeight="28.0" prefWidth="149.0" />
+               </children>
+               <styleClass>
+                  <String fx:value="border" />
+                  <String fx:value="radius" />
+               </styleClass>
             </AnchorPane>
          </children>
       </javafx.scene.layout.AnchorPane>

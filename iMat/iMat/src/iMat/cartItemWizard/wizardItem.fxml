@@ -14,15 +14,15 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="cost" layoutX="524.0" layoutY="14.0" prefHeight="17.0" prefWidth="39.0" text="kr">
+      <Label fx:id="cost" layoutX="506.0" layoutY="14.0" prefHeight="27.0" prefWidth="66.0" text="kr">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="Unit" layoutX="571.0" layoutY="14.0" prefHeight="27.0" prefWidth="72.0" text="Label">
+      <Label fx:id="Unit" layoutX="571.0" layoutY="14.0" prefHeight="27.0" prefWidth="107.0" text="Label">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="totalCost" layoutX="719.0" layoutY="14.0" prefHeight="27.0" prefWidth="78.0" text="Label">
+      <Label fx:id="totalCost" layoutX="719.0" layoutY="14.0" prefHeight="27.0" prefWidth="128.0" text="Label">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
@@ -53,7 +53,7 @@
                   <Image url="@../resources/decButton.png" />
                </image>
             </ImageView>
-            <Label fx:id="amountWiz" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="11.0" prefHeight="27.0" prefWidth="49.0" text="Antal">
+            <Label fx:id="amountWiz" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="9.0" prefHeight="27.0" prefWidth="49.0" text="Antal">
                <font>
                   <Font size="18.0" />
                </font>
