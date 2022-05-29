@@ -364,10 +364,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             ItemWizard.add(itemWiz);
         }
 
-        //handler.reset();
-        for(Order i : handler.getOrders()){
-
-        }
+        handler.reset();
 
         feature.addObserver(this);
 
@@ -449,6 +446,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         updateHeader();
         titleLabel.setText("Gamla ordrar");
         browsePane.getChildren().clear();
+
         browsePane.getChildren().add(orderVy);
         for (orderItem i : orderVy.orderItems) {
 
@@ -1622,10 +1620,14 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
                     hej = i.getOrderNumber();
                 }
             }
+            if(hej<5000){
+                hej = 5000;
+            }
                 handler.placeOrder();
             System.out.println(hej+1);
             handler.getOrders().get(handler.getOrders().size() - 1).setOrderNumber(hej +1);
-
+            handler.getOrders().add(0,handler.getOrders().get(handler.getOrders().size() -1));
+            handler.getOrders().remove(handler.getOrders().size()-1);
             orderVy.updateItems();
             inCart.clear();
             showIncart();
