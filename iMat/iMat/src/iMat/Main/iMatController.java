@@ -287,6 +287,10 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     // kortUppgifter
     @FXML
+    TextField kortInnehavare;
+    @FXML
+    Label errorInne;
+    @FXML
     AnchorPane betalaPane;
     @FXML
     CheckBox saveCreditcard;
@@ -364,7 +368,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             ItemWizard.add(itemWiz);
         }
 
-        handler.reset();
+        //handler.reset();
 
         feature.addObserver(this);
 
@@ -1103,10 +1107,22 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
         scrollPaneAnchorPane.setTranslateY(15);
         UnderFlowPane.setVisible(false);
         UnderAnchorPane.setVisible(false);
+
+        myFav = false;
+        erbjudanden = false;
+        kott = false;
+        frukt = false;
+        mejeri = false;
+        skafferi = false;
+        dricka = false;
+        brod = false;
+        gront = false;
         orderHeader = false;
         handlaHeader = true;
         accountHeader = false;
         helpHeader = false;
+        updatePliancykategori();
+        updateHeader();
         resetCatPressed();
         browsePane.getChildren().clear();
         titleLabel.setText(searchBar.getText());
@@ -1553,6 +1569,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void saveCreditcardInfo() {
+        card.setHoldersName(kortInnehavare.getText());
         card.setCardNumber(kort1.getText() + " " + kort2.getText() + " " + kort3.getText() + " " + kort4.getText());
         card.setValidMonth(Integer.parseInt(datum1.getText()));
         card.setValidYear(Integer.parseInt(datum2.getText()));
@@ -1560,6 +1577,8 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void ifSavedCard() {
+
+        kortInnehavare.setText(card.getHoldersName());
         String[] split = {""};
         split = card.getCardNumber().split(" ");
 
@@ -1669,6 +1688,13 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
 
     public boolean fixErrorCard() {
         boolean isError = false;
+        if(kortInnehavare.getText().isEmpty()){
+            isError = true;
+            errorInne.setText("Måste fylla i namn");
+            errorInne.setStyle("-fx-text-fill: RED");
+        }
+
+
 
         if (kort1.getText().length() != 4) {
             isError = true;
@@ -1740,7 +1766,8 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void updateraErrorkort() {
-        errorMessage1.setText("");
+        errorInne.setStyle("-fx-text-fill: white");
+
         errorMessage1.setStyle("-fx-text-fill: white");
         errorBetalaDatum1.setStyle("-fx-text-fill: white");
         errorCVC.setStyle("-fx-text-fill: white");

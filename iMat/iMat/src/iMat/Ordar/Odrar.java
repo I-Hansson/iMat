@@ -72,7 +72,7 @@ public class Odrar  extends AnchorPane {
                         item.flowPaneInACC.getChildren().add(produkt);
                     }
 
-                    item.titlePane.setText("Order NR:  " + String.valueOf(o.getOrderNumber()) + "    Datum:  "  + strDate + "    Kostnad: " + amount + " Kr " );
+                    item.titlePane.setText("Order NR:  " + String.valueOf(o.getOrderNumber()) + "    Datum:  "  + strDate + "    Kostnad: " + (Math.round(amount*100.0)/100.0) + " Kr " );
 
 
 

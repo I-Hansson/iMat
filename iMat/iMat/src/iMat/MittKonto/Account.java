@@ -42,6 +42,8 @@ public class Account  extends AnchorPane {
     TextField postNummer;
 
     @FXML
+    TextField kortinne;
+    @FXML
     TextField kort1;
     @FXML
     TextField kort2;
@@ -109,7 +111,7 @@ public void saveDetails(){
     user.setPostAddress(postOrt.getText());
     user.setPostCode(postNummer.getText());
 
-
+    card.setHoldersName(kortinne.getText());
     card.setCardNumber(kort1.getText()+" " +kort2.getText()+" " +kort3.getText()+" " +kort4.getText());
         if(datum1.getText().equals("")){
             card.setValidMonth(0);
@@ -150,7 +152,7 @@ public void ifAlreadyUser() {
         if(split.length >= 1){
             kort1.setText(split[0]);
         }
-
+        kortinne.setText(card.getHoldersName());
 
         if(split.length >= 2){
             kort2.setText(split[1]);
