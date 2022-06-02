@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="cartItemPanee" prefHeight="75.0" prefWidth="242.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="cartItemPanee" prefHeight="75.0" prefWidth="242.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <styleClass>
       <String fx:value="border" />
       <String fx:value="radius" />
@@ -27,6 +27,10 @@
                <image>
                   <Image url="@../resources/delete.png" />
                </image>
+               <styleClass>
+                  <String fx:value="shopp" />
+                  <String fx:value="hands" />
+               </styleClass>
             </ImageView>
          </children>
          <styleClass>
@@ -43,12 +47,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="5.0" layoutY="8.0" onMouseClicked="#cartDEC" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.5">
+            <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="5.0" layoutY="8.0" onMouseClicked="#cartDEC" pickOnBounds="true" preserveRatio="true" styleClass="hands" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.5">
                <image>
                   <Image url="@../resources/decButton.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="70.0" layoutY="8.0" onMouseClicked="#cartADD" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.5">
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="70.0" layoutY="8.0" onMouseClicked="#cartADD" pickOnBounds="true" preserveRatio="true" styleClass="hands" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.5">
                <image>
                   <Image url="@../resources/addbutton.png" />
                </image>

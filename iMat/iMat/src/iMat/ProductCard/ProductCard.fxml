@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root fx:id="mainPane" prefHeight="240.0" prefWidth="190.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="mainPane" prefHeight="240.0" prefWidth="190.0" style="-fx-background-color: white;" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="productImageView" fitHeight="118.0" fitWidth="146.0" layoutX="27.0" layoutY="11.5" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="infoImageView" fitHeight="24.0" fitWidth="24.0" layoutX="7.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
@@ -42,7 +42,7 @@
          <children>
             <AnchorPane fx:id="buyed" prefHeight="35.0" prefWidth="155.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css">
                <children>
-                  <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="10.0" />
+                  <ImageView fx:id="decButton" fitHeight="32.0" fitWidth="34.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#onClickDecButton" pickOnBounds="true" preserveRatio="true" styleClass="hands" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="10.0" />
                   <Text fx:id="productAmount" layoutX="52.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="47.99999999999977" AnchorPane.bottomAnchor="5.0">
                      <font>
                         <Font size="20.0" />
@@ -52,13 +52,15 @@
                         <String fx:value="standardTextProductCard" />
                      </styleClass>
                   </Text>
-                  <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="32.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="10.0" />
+                  <ImageView fx:id="addButton" fitHeight="32.0" fitWidth="32.0" layoutX="104.0" layoutY="5.0" onMouseClicked="#addButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="hands" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="notBuy" maxHeight="35.0" minHeight="35.0" onMouseClicked="#notBuyClicked" prefHeight="35.0" prefWidth="155.0">
                <styleClass>
                   <String fx:value="be_blue" />
                   <String fx:value="radius" />
+                  <String fx:value="hands" />
+                  <String fx:value="kop" />
                </styleClass>
                <children>
                   <Text fill="WHITE" layoutX="52.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KÖP" textAlignment="CENTER">
@@ -70,8 +72,8 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <AnchorPane layoutX="4.0" layoutY="45.0" onMouseClicked="#openDetailView" prefHeight="138.0" prefWidth="196.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="44.0" />
-      <AnchorPane layoutX="45.0" onMouseClicked="#openDetailView" prefHeight="45.0" prefWidth="138.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane layoutX="4.0" layoutY="45.0" onMouseClicked="#openDetailView" prefHeight="138.0" prefWidth="196.0" styleClass="hands" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="44.0" />
+      <AnchorPane layoutX="45.0" onMouseClicked="#openDetailView" prefHeight="45.0" prefWidth="138.0" styleClass="hands" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="0.0" />
    </children>
    <styleClass>
       <String fx:value="shadow" />

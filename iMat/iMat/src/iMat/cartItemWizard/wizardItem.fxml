@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="54.0" prefWidth="943.0" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="54.0" prefWidth="943.0" stylesheets="@../stylingCSS/style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="productNameItemWizard" layoutX="105.0" layoutY="14.0" prefHeight="27.0" prefWidth="179.0" text="produktnamn">
          <font>
@@ -39,16 +39,18 @@
             <String fx:value="border" />
             <String fx:value="shadow" />
             <String fx:value="radius" />
+            <String fx:value="hands" />
+            <String fx:value="shopp" />
          </styleClass>
       </AnchorPane>
       <AnchorPane layoutX="295.0" layoutY="4.0" prefHeight="43.0" prefWidth="161.0" style="-fx-background-radius: 50;" styleClass="alternativeNumberbar" stylesheets="@../stylingCSS/buyButtonStyle.css">
          <children>
-            <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="115.0" layoutY="5.0" onMouseClicked="#inWizAdd" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="5.0">
+            <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="115.0" layoutY="5.0" onMouseClicked="#inWizAdd" pickOnBounds="true" preserveRatio="true" styleClass="hands" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@../resources/addbutton.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="6.0" layoutY="5.0" onMouseClicked="#inWizdec" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0">
+            <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="6.0" layoutY="5.0" onMouseClicked="#inWizdec" pickOnBounds="true" preserveRatio="true" styleClass="hands" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@../resources/decButton.png" />
                </image>

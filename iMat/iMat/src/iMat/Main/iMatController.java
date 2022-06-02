@@ -646,24 +646,24 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     public void updateHeader() {
         resetScroll();
         if (handlaHeader) {
-            handlaMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            handlaMenuButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            handlaMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+            handlaMenuButton.setStyle("header-base-color: rgb(255,255,255)");
         }
         if (accountHeader) {
-            accountMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            accountMenuButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            accountMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+            accountMenuButton.setStyle("header-base-color: rgb(255,255,255)");
         }
         if (helpHeader) {
-            helpMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            helpMenuButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            helpMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+            helpMenuButton.setStyle("header-base-color: rgb(255,255,255)");
         }
         if (orderHeader) {
-            odrarMenuButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            odrarMenuButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            odrarMenuButton.setStyle("-fx-background-color: rgb(255,255,255)");
+            odrarMenuButton.setStyle("header-base-color: rgb(255,255,255)");
         }
 
 
@@ -772,49 +772,49 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     public void updatePliancykategori() {
 
         if (kott) {
-            meatFishButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            meatFishButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            meatFishButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            meatFishButton.setStyle("header-base-color: rgb(255,255,255)");
         }
         if (frukt) {
-            fruktGrontButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            fruktGrontButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            fruktGrontButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            fruktGrontButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (myFav) {
-            myFavoriteButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            myFavoriteButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            myFavoriteButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            myFavoriteButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (erbjudanden) {
-            erbjudandenButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            erbjudandenButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            erbjudandenButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            erbjudandenButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (mejeri) {
-            mejeriButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            mejeriButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            mejeriButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            mejeriButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (skafferi) {
-            skafferiButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            skafferiButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            skafferiButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            skafferiButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (dricka) {
-            kryddorButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            kryddorButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            kryddorButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            kryddorButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (brod) {
-            brodButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            brodButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            brodButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            brodButton.setStyle("header-base-color: rgb(255, 255, 255)");
         }
         if (gront){
-            grontButton.setStyle("-fx-background-color: rgb(51, 153, 255)");
+            grontButton.setStyle("header-base-color: rgb(51, 153, 255)");
         } else {
-            grontButton.setStyle("-fx-background-color: rgb(255, 255, 255)");
+            grontButton.setStyle("-header-base-color: rgb(255, 255, 255)");
         }
 
     }
@@ -1403,10 +1403,21 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     public void toUppgifter() {
         if(!inCart.isEmpty()){
             uppgifterPane.toFront();
+            //rensaUppgifter();
             checkIfAlreadyUser();
         }else{
             errorNoProdukt.setVisible(true);
         }
+
+    }
+    public void rensaUppgifter(){
+        user.setFirstName("");
+        user.setLastName("");
+        user.setMobilePhoneNumber("");
+        user.setEmail("");
+        user.setAddress("");
+        user.setPostAddress("");
+        user.setPostCode("");
 
     }
 
@@ -1486,7 +1497,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
     }
 
     public void checkIfAlreadyUser() {
-        if (!user.getFirstName().isEmpty()) {
+
             fornamn.setText(user.getFirstName());
             efternamn.setText(user.getLastName());
             mobilNummer.setText(user.getMobilePhoneNumber());
@@ -1494,7 +1505,7 @@ public class iMatController implements Initializable, ICard, IFeature, ICartItem
             gatuAddress.setText(user.getAddress());
             postOrt.setText(user.getPostAddress());
             postNummer.setText(user.getPostCode());
-        }
+
     }
 
     @FXML

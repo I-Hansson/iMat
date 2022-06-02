@@ -137,7 +137,7 @@ public void saveDetails(){
 }
 
 public void ifAlreadyUser() {
-    if (!user.getFirstName().isEmpty()) {
+
         fornamn.setText(user.getFirstName());
         efternamn.setText(user.getLastName());
         mobilNummer.setText(user.getMobilePhoneNumber());
@@ -146,7 +146,7 @@ public void ifAlreadyUser() {
         postOrt.setText(user.getPostAddress());
         postNummer.setText(user.getPostCode());
 
-    }
+
         String[] split = {""};
         split = card.getCardNumber().split(" ");
         if(split.length >= 1){
